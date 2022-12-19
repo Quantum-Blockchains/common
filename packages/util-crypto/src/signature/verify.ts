@@ -10,6 +10,7 @@ import { decodeAddress } from '../address/decode';
 import { ed25519Verify } from '../ed25519/verify';
 import { secp256k1Verify } from '../secp256k1/verify';
 import { sr25519Verify } from '../sr25519/verify';
+import { dilithium2Verify } from '../dilithium2/verify';
 
 interface VerifyInput {
   message: Uint8Array;
@@ -33,10 +34,11 @@ const VERIFIERS_ECDSA: Verifier[] = [
 const VERIFIERS: Verifier[] = [
   ['ed25519', ed25519Verify],
   ['sr25519', sr25519Verify],
+  ['dilithium2', dilithium2Verify],
   ...VERIFIERS_ECDSA
 ];
 
-const CRYPTO_TYPES: ('ed25519' | 'sr25519' | 'ecdsa')[] = ['ed25519', 'sr25519', 'ecdsa'];
+const CRYPTO_TYPES: ('ed25519' | 'sr25519' | 'ecdsa' | 'dilithium2')[] = ['ed25519', 'sr25519', 'ecdsa', 'dilithium2'];
 
 function verifyDetect (result: VerifyResult, { message, publicKey, signature }: VerifyInput, verifiers = VERIFIERS): VerifyResult {
   result.isValid = verifiers.some(([crypto, verify]): boolean => {
@@ -72,7 +74,8 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
       none: () => {
         throw Error('no verify for `none` crypto type');
       },
-      sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey)
+      sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey),
+      dilithium2: () => dilithium2Verify(message, signature.subarray(1), publicKey),
     }[type]();
   } catch (error) {
     // ignore, result.isValid still set to false

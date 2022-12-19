@@ -14,8 +14,6 @@ export { encodeMultiAddress } from './encodeMulti';
 export { evmToAddress } from './evmToAddress';
 export { addressEq } from './eq';
 export { isAddress } from './is';
+export { setSS58Format } from './setSS58Format';
 export { sortAddresses } from './sort';
 export { validateAddress } from './validate';
-
-// eslint-disable-next-line deprecation/deprecation
-export { setSS58Format } from './setSS58Format';

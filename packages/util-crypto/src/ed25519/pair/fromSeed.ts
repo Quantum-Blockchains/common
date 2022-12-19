@@ -24,7 +24,9 @@ import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
   if (!onlyJs && isReady()) {
     const full = ed25519KeypairFromSeed(seed);
-
+    console.log(`Full: ${full}`);
+    console.log(`Pubic key: ${full.slice(32)}`);
+    console.log(`Secret key: ${full.slice(0,64)}`);
     return {
       publicKey: full.slice(32),
       secretKey: full.slice(0, 64)

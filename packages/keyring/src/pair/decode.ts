@@ -22,13 +22,19 @@ export function decodePair (passphrase?: string, encrypted?: Uint8Array | null, 
   const decrypted = jsonDecryptData(encrypted, passphrase, encType);
   const header = decrypted.subarray(0, PKCS8_HEADER.length);
 
+  console.log("1");
+
   if (!u8aEq(header, PKCS8_HEADER)) {
     throw new Error('Invalid Pkcs8 header found in body');
   }
 
+  console.log("2");
+
   let secretKey = decrypted.subarray(SEED_OFFSET, SEED_OFFSET + SEC_LENGTH);
   let divOffset = SEED_OFFSET + SEC_LENGTH;
   let divider = decrypted.subarray(divOffset, divOffset + PKCS8_DIVIDER.length);
+
+  console.log("3");
 
   // old-style, we have the seed here
   if (!u8aEq(divider, PKCS8_DIVIDER)) {
@@ -41,8 +47,15 @@ export function decodePair (passphrase?: string, encrypted?: Uint8Array | null, 
     }
   }
 
+  console.log("4");
+
   const pubOffset = divOffset + PKCS8_DIVIDER.length;
   const publicKey = decrypted.subarray(pubOffset, pubOffset + PUB_LENGTH);
+
+    console.log("5");
+
+console.log(`Public length = ${publicKey.length}`)
+console.log(`Secret length = ${secretKey.length}`)
 
   return {
     publicKey,

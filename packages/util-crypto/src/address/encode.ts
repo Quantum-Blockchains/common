@@ -14,7 +14,14 @@ import { sshash } from './sshash';
 
 export function encodeAddress (key: HexString | Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
+
+  if (key.length === 1312) {
+    key = key.slice(0, 32);
+  }
+
   const u8a = decodeAddress(key);
+
+
 
   if ((ss58Format < 0) || (ss58Format > 16383) || [46, 47].includes(ss58Format)) {
     throw new Error('Out of range ss58Format specified');
