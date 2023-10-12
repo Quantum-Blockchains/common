@@ -1,12 +1,14 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { hexToU8a, u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToMiniSecret } from '../../mnemonic';
-import { performanceWasm } from '../../test/performance';
-import { secp256k1PairFromSeed } from '..';
+import { mnemonicToMiniSecret } from '../../mnemonic/index.js';
+import { perfWasm } from '../../test/index.js';
+import { secp256k1PairFromSeed } from '../index.js';
 
 // mnemonic, secret, public, account_id
 type Test = [string, string, string, string];
@@ -49,23 +51,25 @@ describe('secp256k1PairFromSeed', (): void => {
     secretKey: hexToU8a('0x4380de832af797688026ce24f85204d508243f201650c1a134929e5458b7fbae')
   };
 
-  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-    it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
-      expect(secp256k1PairFromSeed(TEST, onlyJs)).toEqual(RESULT);
-    });
+  for (const onlyJs of [false, true]) {
+    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+      it('generates a valid publicKey/secretKey pair (u8a)', (): void => {
+        expect(secp256k1PairFromSeed(TEST, onlyJs)).toEqual(RESULT);
+      });
 
-    tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
-      it(`creates valid against known (${index})`, (): void => {
-        const seed = mnemonicToMiniSecret(mnemonic);
-        const pair = secp256k1PairFromSeed(seed, onlyJs);
+      tests.forEach(([mnemonic, secretKey, publicKey], index): void => {
+        it(`creates valid against known (${index})`, (): void => {
+          const seed = mnemonicToMiniSecret(mnemonic);
+          const pair = secp256k1PairFromSeed(seed, onlyJs);
 
-        expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
-        expect(u8aToHex(pair.publicKey)).toEqual(publicKey);
+          expect(u8aToHex(pair.secretKey)).toEqual(secretKey);
+          expect(u8aToHex(pair.publicKey)).toEqual(publicKey);
+        });
       });
     });
-  });
+  }
 
-  performanceWasm('secp256k1PairFromSeed', 500, (input, onlyJs) =>
+  perfWasm('secp256k1PairFromSeed', 500, (input, onlyJs) =>
     secp256k1PairFromSeed(input, onlyJs)
   );
 });

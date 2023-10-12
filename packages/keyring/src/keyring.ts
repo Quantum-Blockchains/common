@@ -1,15 +1,15 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
+// Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { EncryptedJsonEncoding, Keypair, KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types';
+import type { KeyringInstance, KeyringOptions, KeyringPair, KeyringPair$Json, KeyringPair$Meta } from './types.js';
 
 import { hexToU8a, isHex, stringToU8a } from '@polkadot/util';
 import { base64Decode, decodeAddress, ed25519PairFromSeed as ed25519FromSeed, encodeAddress, ethereumEncode, hdEthereum, keyExtractSuri, keyFromPath, mnemonicToLegacySeed, mnemonicToMiniSecret, secp256k1PairFromSeed as secp256k1FromSeed, sr25519PairFromSeed as sr25519FromSeed } from '@polkadot/util-crypto';
 
-import { DEV_PHRASE } from './defaults';
-import { createPair } from './pair';
-import { Pairs } from './pairs';
+import { createPair } from './pair/index.js';
+import { DEV_PHRASE } from './defaults.js';
+import { Pairs } from './pairs.js';
 
 const PairFromSeed = {
   ecdsa: (seed: Uint8Array): Keypair => secp256k1FromSeed(seed),
@@ -43,7 +43,7 @@ export class Keyring implements KeyringInstance {
 
   readonly #type: KeypairType;
 
-  #ss58?: number;
+  #ss58?: number | undefined;
 
   public decodeAddress = decodeAddress;
 
@@ -246,7 +246,7 @@ export class Keyring implements KeyringInstance {
   public encodeAddress = (address: Uint8Array | string, ss58Format?: number): string => {
     return this.type === 'ethereum'
       ? ethereumEncode(address)
-      : encodeAddress(address, ss58Format === undefined ? this.#ss58 : ss58Format);
+      : encodeAddress(address, ss58Format ?? this.#ss58);
   };
 
   /**

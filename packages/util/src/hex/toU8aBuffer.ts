@@ -1,7 +1,5 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { HexString } from '../types';
 
 /**
  * @name hexToU8a
@@ -18,7 +16,7 @@ import type { HexString } from '../types';
  * hexToU8a('0x80001f', 32); // Uint8Array([0x00, 0x80, 0x00, 0x1f])
  * ```
  */
-export function hexToU8a (_value?: HexString | string | null, bitLength = -1): Uint8Array {
+export function hexToU8a (_value?: string | null, bitLength = -1): Uint8Array {
   if (!_value) {
     return new Uint8Array();
   }
@@ -50,5 +48,5 @@ export function hexToU8a (_value?: HexString | string | null, bitLength = -1): U
     return u8a;
   }
 
-  return Uint8Array.from(buf.slice(0, resultLength));
+  return Uint8Array.from(buf.subarray(0, resultLength));
 }

@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { objectCopy } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { objectCopy } from './index.js';
 
 describe('objectCopy', (): void => {
   it('makes a shallow copy of the object', (): void => {

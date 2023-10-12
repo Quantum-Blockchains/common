@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isIp } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { isIp } from './index.js';
 
 describe('isIp', (): void => {
   it('returns false when non-ip found', (): void => {

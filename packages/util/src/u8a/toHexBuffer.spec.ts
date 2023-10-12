@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { u8aToHex } from './toHexBuffer';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { u8aToHex } from './toHexBuffer.js';
 
 describe('u8aToHex', (): void => {
   it('returns empty as 0x', (): void => {
@@ -28,7 +30,8 @@ describe('u8aToHex', (): void => {
     expect(
       u8aToHex(
         new Uint8Array([128, 0, 10]),
-        -1, false
+        -1,
+        false
       )
     ).toEqual('80000a');
   });

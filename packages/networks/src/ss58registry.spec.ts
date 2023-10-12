@@ -1,26 +1,34 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
+// Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import known from '@substrate/ss58-registry';
-import fs from 'fs';
-import path from 'path';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import other from './test/ss58registry.test.json';
+import known from '@substrate/ss58-registry';
+import fs from 'node:fs';
+
+import { stringify } from '@polkadot/util';
 
 describe('@substrate/ss58-registry', (): void => {
   it('has known values', (): void => {
-    const json = JSON.stringify(known, null, 2);
+    const testUrl = new URL('../test/ss58registry.json', import.meta.url);
+    const json = stringify(known, 2);
 
     try {
-      expect(JSON.parse(json)).toEqual(other);
+      expect(
+        JSON.parse(json)
+      ).toEqual(
+        JSON.parse(
+          fs.readFileSync(testUrl, 'utf-8')
+        )
+      );
     } catch (error) {
-      if (process.env.GITHUB_REPOSITORY) {
+      if (process.env['GITHUB_REPOSITORY']) {
         console.error(json);
 
         throw error;
       }
 
-      fs.writeFileSync(path.join(__dirname, './test/ss58registry.test.json'), json, { flag: 'w' });
+      fs.writeFileSync(testUrl, json, { flag: 'w' });
     }
   });
 });

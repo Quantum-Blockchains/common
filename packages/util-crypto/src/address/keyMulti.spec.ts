@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createKeyMulti } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { createKeyMulti } from './index.js';
 
 describe('createKeyMulti', (): void => {
   it('creates a valid multikey (aligning with Rust, needs sorting)', (): void => {

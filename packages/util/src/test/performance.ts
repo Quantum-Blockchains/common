@@ -1,7 +1,11 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { formatDecimal, formatNumber } from '..';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+/* global it, expect */
+
+import { formatDecimal, formatNumber, stringify } from '../index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ExecFn = (...params: any[]) => unknown;
@@ -9,7 +13,7 @@ type ExecFn = (...params: any[]) => unknown;
 const NUM_PAD = 16;
 const PRE_PAD = 32;
 
-function loop (count: number, inputs: readonly unknown[][], exec: ExecFn): [number, unknown[]] {
+function loop (exec: ExecFn, count: number, inputs: readonly unknown[][]): [number, unknown[]] {
   const start = performance.now();
   const results = new Array<unknown>(inputs.length);
 
@@ -40,14 +44,14 @@ ${formatFixed(micro).padStart(NUM_PAD + PRE_PAD + 1)} μs/op`;
 }
 
 export function perf (name: string, count: number, inputs: readonly unknown[][], exec: ExecFn, withLog?: boolean): void {
-  if (process.env.GITHUB_REPOSITORY) {
-    return;
-  }
+  const test = process.env['GITHUB_REPOSITORY']
+    ? it.skip
+    : it;
 
-  it(`performance: ${name}`, (): void => {
-    const [time, results] = loop(count, inputs, exec);
+  test(`performance: ${name}`, (): void => {
+    const [time, results] = loop(exec, count, inputs);
 
-    console.log(`
+    console.error(`
 performance run for ${name} completed with ${formatNumber(count)} iterations.
 
 ${`${name}:`.padStart(PRE_PAD)} ${time.toFixed(2).padStart(NUM_PAD)} ms${formatOps(count, time)}
@@ -60,28 +64,29 @@ ${`${name}:`.padStart(PRE_PAD)} ${time.toFixed(2).padStart(NUM_PAD)} ms${formatO
 }
 
 export function perfCmp (name: string, [first, second]: [string, string], count: number, inputs: readonly unknown[][], exec: ExecFn): void {
-  if (process.env.GITHUB_REPOSITORY) {
-    return;
-  }
+  const test = process.env['GITHUB_REPOSITORY']
+    ? it.skip
+    : it;
 
-  it(`performance: ${name}`, (): void => {
-    const pa = inputs.map((values) => [...values, false]);
-    const pb = inputs.map((values) => [...values, true]);
-    const [ta, ra] = loop(count, pa, exec);
-    const [tb, rb] = loop(count, pb, exec);
-
-    console.log(`
-performance run for ${name} completed with ${formatNumber(count)} iterations.
-
-${`${first}:`.padStart(PRE_PAD)} ${ta.toFixed(2).padStart(NUM_PAD)} ms ${ta < tb ? '(fastest)' : `(slowest, ${(ta / tb).toFixed(2)}x)`}${formatOps(count, ta)}
-
-${`${second}:`.padStart(PRE_PAD)} ${tb.toFixed(2).padStart(NUM_PAD)} ms ${ta > tb ? '(fastest)' : `(slowest, ${(tb / ta).toFixed(2)}x)`}${formatOps(count, tb)}
-`);
-
-    const unmatched = ra.filter((r, i) =>
-      JSON.stringify(r) !== JSON.stringify(rb[i])
+  test(`performance: ${name}`, (): void => {
+    const [[t1, r1], [t2, r2]] = [false, true].map((flag) =>
+      loop(exec, count, inputs.map((values) =>
+        [...values, flag]
+      ))
     );
 
-    expect(unmatched.length).toEqual(0);
+    console.error(`
+performance run for ${name} completed with ${formatNumber(count)} iterations.
+
+${`${first}:`.padStart(PRE_PAD)} ${t1.toFixed(2).padStart(NUM_PAD)} ms ${t1 < t2 ? '(fastest)' : `(slowest, ${(t1 / t2).toFixed(2)}x)`}${formatOps(count, t1)}
+
+${`${second}:`.padStart(PRE_PAD)} ${t2.toFixed(2).padStart(NUM_PAD)} ms ${t1 > t2 ? '(fastest)' : `(slowest, ${(t2 / t1).toFixed(2)}x)`}${formatOps(count, t2)}
+`);
+
+    expect(
+      r1.filter((_, i) =>
+        stringify(r1[i]) !== stringify(r2[i])
+      )
+    ).toHaveLength(0);
   });
 }

@@ -1,10 +1,10 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { hasBigInt } from '@polkadot/util';
 import { bip39Validate, isReady } from '@polkadot/wasm-crypto';
 
-import { validateMnemonic } from './bip39';
+import { validateMnemonic } from './bip39.js';
 
 /**
  * @name mnemonicValidate
@@ -19,8 +19,8 @@ import { validateMnemonic } from './bip39';
  * const isValidMnemonic = mnemonicValidate(mnemonic); // => boolean
  * ```
  */
-export function mnemonicValidate (mnemonic: string, onlyJs?: boolean): boolean {
-  return !hasBigInt || (!onlyJs && isReady())
+export function mnemonicValidate (mnemonic: string, wordlist?: string[], onlyJs?: boolean): boolean {
+  return !hasBigInt || (!wordlist && !onlyJs && isReady())
     ? bip39Validate(mnemonic)
-    : validateMnemonic(mnemonic);
+    : validateMnemonic(mnemonic, wordlist);
 }

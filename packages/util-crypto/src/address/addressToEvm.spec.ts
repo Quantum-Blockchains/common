@@ -1,9 +1,11 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { hexToU8a } from '@polkadot/util';
 
-import { addressToEvm } from './addressToEvm';
+import { addressToEvm } from './addressToEvm.js';
 
 describe('addressToEvm', (): void => {
   it('creates a valid known EVM address', (): void => {

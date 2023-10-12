@@ -1,9 +1,9 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { u8aToHex } from '@polkadot/util';
 
-import { keccakAsU8a } from '../keccak';
+import { keccakAsU8a } from '../keccak/index.js';
 
 function isInvalidChar (char: string, byte: number): boolean {
   return char !== (

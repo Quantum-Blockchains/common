@@ -1,10 +1,10 @@
-// Copyright 2017-2022 @polkadot/x-textencoder authors & contributors
+// Copyright 2017-2023 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import util from 'util';
+import util from 'node:util';
 
 import { extractGlobal } from '@polkadot/x-global';
 
-export { packageInfo } from './packageInfo';
+export { packageInfo } from './packageInfo.js';
 
-export const TextDecoder = extractGlobal('TextDecoder', util.TextDecoder);
+export const TextDecoder = /*#__PURE__*/ extractGlobal('TextDecoder', util.TextDecoder);

@@ -1,19 +1,19 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
+// Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyringPair$Json } from './types';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import type { KeyringPair$Json } from './types.js';
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { base64Decode, cryptoWaitReady, encodeAddress, randomAsU8a, setSS58Format } from '@polkadot/util-crypto';
 
-import { decodePair } from './pair/decode';
-import Keyring from '.';
+import { decodePair } from './pair/decode.js';
+import Keyring from './index.js';
+
+await cryptoWaitReady();
 
 describe('keypair', (): void => {
-  beforeEach(async (): Promise<void> => {
-    await cryptoWaitReady();
-  });
-
   describe('ed25519', (): void => {
     const publicKeyOne = new Uint8Array([47, 140, 97, 41, 216, 22, 207, 81, 195, 116, 188, 127, 8, 195, 230, 62, 209, 86, 207, 120, 174, 251, 74, 101, 80, 217, 123, 135, 153, 121, 119, 238]);
     const publicKeyTwo = new Uint8Array([215, 90, 152, 1, 130, 177, 10, 183, 213, 75, 254, 211, 201, 100, 7, 58, 14, 225, 114, 243, 218, 166, 35, 37, 175, 2, 26, 104, 247, 7, 81, 26]);

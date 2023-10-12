@@ -1,8 +1,12 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { hasBuffer } from '../has';
-import { isFunction } from './function';
+import type { BufferClass, BufferObject } from '../types.js';
+
+import { xglobal } from '@polkadot/x-global';
+
+import { hasBuffer } from '../has.js';
+import { isFunction } from './function.js';
 
 /**
  * @name isBuffer
@@ -18,7 +22,7 @@ import { isFunction } from './function';
  * console.log('isBuffer', isBuffer(Buffer.from([]))); // => true
  * ```
  */
-export function isBuffer (value: unknown): value is Buffer {
+export function isBuffer <T = BufferObject> (value: unknown): value is T {
   // we do check a function first, since it is slightly faster than isBuffer itself
-  return hasBuffer && isFunction(value && (value as Buffer).readDoubleLE) && Buffer.isBuffer(value);
+  return hasBuffer && !!value && isFunction((value as unknown as BufferObject).readDoubleLE) && (xglobal.Buffer as unknown as BufferClass).isBuffer(value);
 }

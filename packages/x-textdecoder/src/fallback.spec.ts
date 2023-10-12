@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/x-textencoder authors & contributors
+// Copyright 2017-2023 @polkadot/x-textencoder authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { TextDecoder } from './fallback';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { TextDecoder } from './fallback.js';
 
 describe('TextDecoder (fallback)', (): void => {
   it('decodes correctly', (): void => {

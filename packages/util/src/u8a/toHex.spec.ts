@@ -1,14 +1,16 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { perfCmp } from '../test/performance';
-import { u8aToHex as u8aToHexBuffer } from './toHexBuffer';
-import { u8aToHex } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { perfCmp } from '../test/index.js';
+import { u8aToHex } from './index.js';
+import { u8aToHex as u8aToHexBuffer } from './toHexBuffer.js';
 
 const ptest32k = new Uint8Array(32768);
 const ptest256 = new Uint8Array(256);
 
-for (let i = 0; i < ptest32k.length; i++) {
+for (let i = 0, count = ptest32k.length; i < count; i++) {
   if (i < ptest256.length) {
     ptest256[1] = i % 256;
   }
@@ -41,7 +43,8 @@ describe('u8aToHex', (): void => {
     expect(
       u8aToHex(
         new Uint8Array([128, 0, 10]),
-        -1, false
+        -1,
+        false
       )
     ).toEqual('80000a');
   });

@@ -1,13 +1,11 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { HexString } from '@polkadot/util/types';
 
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { isReady, twox } from '@polkadot/wasm-crypto';
 
-import { createAsHex } from '../helpers';
-import { xxhash64 } from './xxhash64';
+import { createAsHex } from '../helpers.js';
+import { xxhash64 } from './xxhash64.js';
 
 /**
  * @name xxhashAsU8a
@@ -23,7 +21,7 @@ import { xxhash64 } from './xxhash64';
  * xxhashAsU8a('abc'); // => 0x44bc2cf5ad770999
  * ```
  */
-export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bitLength: 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512 = 64, onlyJs?: boolean): Uint8Array {
+export function xxhashAsU8a (data: string | Uint8Array, bitLength: 64 | 128 | 192 | 256 | 320 | 384 | 448 | 512 = 64, onlyJs?: boolean): Uint8Array {
   const rounds = Math.ceil(bitLength / 64);
   const u8a = u8aToU8a(data);
 
@@ -44,4 +42,4 @@ export function xxhashAsU8a (data: HexString | Buffer | Uint8Array | string, bit
  * @name xxhashAsHex
  * @description Creates a xxhash64 hex from the input.
  */
-export const xxhashAsHex = createAsHex(xxhashAsU8a);
+export const xxhashAsHex = /*#__PURE__*/ createAsHex(xxhashAsU8a);

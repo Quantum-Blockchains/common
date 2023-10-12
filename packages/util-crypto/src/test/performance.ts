@@ -1,16 +1,16 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { arrayRange } from '@polkadot/util';
-import { perf, perfCmp } from '@polkadot/util/test/performance';
+import { perf, perfCmp } from '@polkadot/util/test';
 
-import { randomAsU8a } from '..';
+import { randomAsU8a } from '../index.js';
 
 type ExecFn = (input: Uint8Array, onlyJs: boolean) => unknown;
 
 const GENERATED = arrayRange(256).map(() => [randomAsU8a()]);
 
-export function performanceWasm (name: string, count: number, exec: ExecFn, inputs = GENERATED): void {
+export function perfWasm (name: string, count: number, exec: ExecFn, inputs = GENERATED): void {
   perfCmp(name, ['WebAssembly', 'JavaScript'], count, inputs, exec);
 }
 

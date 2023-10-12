@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/keyring authors & contributors
+// Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { createTestPairs } from '../testingPairs';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { createTestPairs } from '../testingPairs.js';
 
 const keyring = createTestPairs({ type: 'ed25519' }, false);
 

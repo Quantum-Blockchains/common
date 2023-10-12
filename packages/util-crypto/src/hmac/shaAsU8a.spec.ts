@@ -1,11 +1,13 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { performanceWasm } from '../test/performance';
-import { hmacShaAsU8a } from '.';
+import { perfWasm } from '../test/index.js';
+import { hmacShaAsU8a } from './index.js';
 
 describe('hmacShaAsU8a', (): void => {
   beforeEach(async (): Promise<void> => {
@@ -23,17 +25,21 @@ describe('hmacShaAsU8a', (): void => {
     )
   };
 
-  describe.each([256, 512] as (256 | 512)[])('bitLength=%p', (bitLength): void => {
-    describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
-      it('returns an hex representation (string)', (): void => {
-        expect(
-          hmacShaAsU8a(key, data, bitLength, onlyJs)
-        ).toEqual(output[bitLength]);
-      });
+  for (const bitLength of [256, 512] as const) {
+    describe(`bitLength=${bitLength}`, (): void => {
+      for (const onlyJs of [false, true]) {
+        describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
+          it('returns an hex representation (string)', (): void => {
+            expect(
+              hmacShaAsU8a(key, data, bitLength, onlyJs)
+            ).toEqual(output[bitLength]);
+          });
+        });
+      }
     });
 
-    performanceWasm(`hmacShaAsU8a, bitLength=${bitLength}`, 16000, (input, onlyJs) =>
+    perfWasm(`hmacShaAsU8a, bitLength=${bitLength}`, 16000, (input, onlyJs) =>
       hmacShaAsU8a(input, input, bitLength, onlyJs)
     );
-  });
+  }
 });

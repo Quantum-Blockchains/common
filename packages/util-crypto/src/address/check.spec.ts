@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { checkAddress } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { checkAddress } from './index.js';
 
 describe('checkAddress', (): void => {
   it('returns [true, null] for Kusama', (): void => {

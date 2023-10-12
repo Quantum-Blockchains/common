@@ -1,9 +1,7 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types';
-
-import nacl from 'tweetnacl';
+import type { Keypair } from '../../types.js';
 
 /**
  * @name ed25519PairFromSecret
@@ -19,6 +17,13 @@ import nacl from 'tweetnacl';
  * ed25519PairFromSecret(...); // => { secretKey: [...], publicKey: [...] }
  * ```
  */
-export function ed25519PairFromSecret (secret: Uint8Array): Keypair {
-  return nacl.sign.keyPair.fromSecretKey(secret);
+export function ed25519PairFromSecret (secretKey: Uint8Array): Keypair {
+  if (secretKey.length !== 64) {
+    throw new Error('Invalid secretKey provided');
+  }
+
+  return {
+    publicKey: secretKey.slice(32),
+    secretKey
+  };
 }

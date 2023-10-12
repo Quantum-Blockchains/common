@@ -1,11 +1,11 @@
-// Copyright 2017-2022 @polkadot/networks authors & contributors
+// Copyright 2017-2023 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownSubstrate, Network, SubstrateNetwork } from './types';
+import type { KnownSubstrate, Network, SubstrateNetwork } from './types.js';
 
 import knownSubstrate from '@substrate/ss58-registry';
 
-import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
+import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.js';
 
 // These are known prefixes that are not sorted
 const UNSORTED = [0, 2, 42];
@@ -29,8 +29,8 @@ function toExpanded (o: KnownSubstrate): SubstrateNetwork {
   n.isIgnored = n.isTestnet || (
     !(
       o.standardAccount &&
-      o.decimals && o.decimals.length &&
-      o.symbols && o.symbols.length
+      o.decimals?.length &&
+      o.symbols?.length
     ) &&
     o.prefix !== 42
   );

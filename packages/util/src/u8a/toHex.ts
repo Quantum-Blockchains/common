@@ -1,7 +1,7 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '../types';
+import type { HexString } from '../types.js';
 
 const U8 = new Array<string>(256);
 const U16 = new Array<string>(256 * 256);
@@ -54,7 +54,7 @@ export function u8aToHex (value?: Uint8Array | null, bitLength = -1, isPrefixed 
     ? '0x'
     : '' as HexString;
 
-  if (!value || !value.length) {
+  if (!value?.length) {
     return empty;
   } else if (bitLength > 0) {
     const length = Math.ceil(bitLength / 8);

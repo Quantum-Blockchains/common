@@ -1,7 +1,9 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { numberToHex } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
+
+import { numberToHex } from './index.js';
 
 describe('numberToHex', (): void => {
   it('converts undefined to 0x00', (): void => {

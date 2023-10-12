@@ -1,14 +1,17 @@
-// Copyright 2017-2022 @polkadot/util authors & contributors
+// Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { perfCmp } from '../test/performance';
-import { isCodec } from '.';
+/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-const ptest = {
+import { perfCmp } from '../test/index.js';
+import { isCodec } from './index.js';
+
+const VALID = {
   registry: {
     get: () => null
   },
   toHex: () => '0x',
+  toHuman: () => '0x',
   toU8a: () => new Uint8Array()
 };
 
@@ -19,13 +22,7 @@ describe('isCodec', (): void => {
 
   it('is true when codec-like signature is found', (): void => {
     expect(
-      isCodec({
-        registry: {
-          get: () => null
-        },
-        toHex: () => '0x',
-        toU8a: () => new Uint8Array()
-      })
+      isCodec(VALID)
     ).toEqual(true);
   });
 
@@ -47,7 +44,7 @@ describe('isCodec', (): void => {
     ).toEqual(false);
   });
 
-  perfCmp('isCodec', ['isCodec', 'instanceof'], 500_000, [[ptest]], (v: unknown, isSecond) =>
+  perfCmp('isCodec', ['isCodec', 'instanceof'], 500_000, [[VALID]], (v: unknown, isSecond) =>
     isSecond
       ? !(v instanceof String)
       : isCodec(v)

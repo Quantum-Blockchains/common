@@ -1,9 +1,9 @@
-// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { compactAddLength, isU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
-import { blake2AsU8a } from '../blake2/asU8a';
+import { blake2AsU8a } from '../blake2/asU8a.js';
 
 const HDKD = compactAddLength(stringToU8a('Secp256k1HDKD'));
 
