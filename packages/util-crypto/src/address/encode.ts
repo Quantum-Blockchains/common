@@ -14,7 +14,7 @@ import { sshash } from './sshash.js';
 
 export function encodeAddress (key: HexString | Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
-
+  
   if (key.length === 1312) {
     key = key.slice(0, 32);
   }

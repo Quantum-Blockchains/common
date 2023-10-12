@@ -3,8 +3,7 @@
 
 import type { BN } from './bn/bn.js';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface Class<T = any, A extends unknown[] = any[]> {
   prototype: T;
 
@@ -13,9 +12,6 @@ export interface Class<T = any, A extends unknown[] = any[]> {
   hasOwnProperty (prop: string): boolean;
   isPrototypeOf (other: unknown): boolean;
 }
-
-// @deprecated Use Class<T, A> instead
-export type Constructor<T = any, A extends unknown[] = any[]> = Class<T, A>;
 
 export interface ToBigInt {
   toBigInt: () => bigint;
