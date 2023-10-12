@@ -1,4 +1,4 @@
-    1658	Jaco                          	Bump deps (#1886)
+    1655	Jaco                          	12.5.1 (#1881)
       13	Carlo Sala                    	feat(networks): add zeitgeist Ledger support (#1840)
        9	Antoine Estienne              	Add eth uri keyring test (#1291)
        6	Amaury Martiny                	Add tests from Rust (#283)
@@ -58,5 +58,4 @@
        1	Wei Tang                      	ss58: add Kulupu prefix to the list (#595)
        1	WoeOm                         	Handing high precision scenes (#450)
        1	xx network                    	Add xxnetwork genesis hash and ledger app (#1463)
-       1	Yaroslav Bolyukin             	Add quartz support for ledger, update unique slip-0044 identifier (#1882)
        1	Yuri                          	Extra check for process for browser bundles (#923)

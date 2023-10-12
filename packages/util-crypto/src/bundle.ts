@@ -14,6 +14,7 @@ export * from './base64/index.js';
 export * from './blake2/index.js';
 export * from './crypto.js';
 export * from './ed25519/index.js';
+export * from './dilithium2/index.js';
 export * from './ethereum/index.js';
 export * from './hd/index.js';
 export * from './hmac/index.js';
