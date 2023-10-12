@@ -34,7 +34,7 @@ describe('objectProperty/objectProperties', (): void => {
       b = 1;
 
       get a () {
-        return 1 + 0;
+        return 1;
       }
     }
 

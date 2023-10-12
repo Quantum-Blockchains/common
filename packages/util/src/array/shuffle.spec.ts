@@ -3,7 +3,6 @@
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
 
-import { stringify } from '../stringify.js';
 import { perf } from '../test/index.js';
 import { arrayRange, arrayShuffle } from './index.js';
 
@@ -31,8 +30,8 @@ describe('arrayShuffle', (): void => {
       inp.filter((v) => !out.includes(v))
     ).toEqual([]);
     expect(
-      stringify(inp)
-    ).not.toEqual(stringify(out));
+      JSON.stringify(inp)
+    ).not.toEqual(JSON.stringify(out));
   });
 
   perf('arrayShuffle', 1000, [[ptest]], arrayShuffle);

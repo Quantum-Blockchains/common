@@ -42,7 +42,9 @@ describe('testingPairs', (): void => {
     const keyring = new Keyring({ type: 'ethereum' });
     const pair = keyring.createFromUri('0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133');
 
-    expect(pair?.address).toEqual(TEST_ADD);
+    expect(
+      pair && pair.address
+    ).toEqual(TEST_ADD);
   });
 
   describe('checks eth test addresses', (): void => {

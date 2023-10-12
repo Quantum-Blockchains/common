@@ -1,8 +1,10 @@
 // Copyright 2017-2023 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ObjectIndexed = Record<string, any>;
+interface ObjectIndexed {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [index: string]: any;
+}
 
 /**
  * @name isObject

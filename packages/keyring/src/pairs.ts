@@ -1,6 +1,7 @@
 // Copyright 2017-2023 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { HexString } from '@polkadot/util/types';
 import type { KeyringPair, KeyringPairs } from './types.js';
 
 import { isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
@@ -21,7 +22,7 @@ export class Pairs implements KeyringPairs {
     return Object.values(this.#map);
   }
 
-  public get (address: string | Uint8Array): KeyringPair {
+  public get (address: HexString | string | Uint8Array): KeyringPair {
     const pair = this.#map[decodeAddress(address).toString()];
 
     if (!pair) {
@@ -35,7 +36,7 @@ export class Pairs implements KeyringPairs {
     return pair;
   }
 
-  public remove (address: string | Uint8Array): void {
+  public remove (address: HexString | string | Uint8Array): void {
     delete this.#map[decodeAddress(address).toString()];
   }
 }
