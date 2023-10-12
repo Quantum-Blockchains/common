@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { isWasm } from './index.js';
+import { isWasm } from '.';
 
 describe('isWasm', (): void => {
   it('is false on no value', (): void => {

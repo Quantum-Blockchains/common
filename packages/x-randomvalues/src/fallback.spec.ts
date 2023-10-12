@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/x-randomvalues authors & contributors
+// Copyright 2017-2022 @polkadot/x-randomvalues authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { insecureRandomValues } from './fallback.js';
+import { insecureRandomValues } from './fallback';
 
 describe('fallback (insecure)', (): void => {
   it('subsequent results does not match', (): void => {

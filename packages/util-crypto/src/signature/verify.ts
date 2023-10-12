@@ -1,16 +1,16 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { KeypairType, VerifyResult } from '../types.js';
+import type { KeypairType, VerifyResult } from '../types';
 
 import { u8aIsWrapped, u8aToU8a, u8aUnwrapBytes, u8aWrapBytes } from '@polkadot/util';
 
-import { decodeAddress } from '../address/decode.js';
-import { ed25519Verify } from '../ed25519/verify.js';
-import { secp256k1Verify } from '../secp256k1/verify.js';
-import { sr25519Verify } from '../sr25519/verify.js';
-import { dilithium2Verify } from '../dilithium2/verify.js';
+import { decodeAddress } from '../address/decode';
+import { ed25519Verify } from '../ed25519/verify';
+import { secp256k1Verify } from '../secp256k1/verify';
+import { sr25519Verify } from '../sr25519/verify';
+import { dilithium2Verify } from '../dilithium2/verify';
 
 interface VerifyInput {
   message: Uint8Array;
@@ -48,7 +48,7 @@ function verifyDetect (result: VerifyResult, { message, publicKey, signature }: 
 
         return true;
       }
-    } catch {
+    } catch (error) {
       // do nothing, result.isValid still set to false
     }
 
@@ -77,7 +77,7 @@ function verifyMultisig (result: VerifyResult, { message, publicKey, signature }
       sr25519: () => sr25519Verify(message, signature.subarray(1), publicKey),
       dilithium2: () => dilithium2Verify(message, signature.subarray(1), publicKey),
     }[type]();
-  } catch {
+  } catch (error) {
     // ignore, result.isValid still set to false
   }
 

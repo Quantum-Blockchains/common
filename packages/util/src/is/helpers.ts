@@ -1,18 +1,12 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isFunction } from './function.js';
-import { isObject } from './object.js';
+import { isFunction } from './function';
+import { isObject } from './object';
 
 export function isOn <T> (...fns: (keyof T)[]): (value?: unknown) => value is T {
   return (value?: unknown): value is T =>
     (isObject(value) || isFunction(value)) &&
-    fns.every((f) => isFunction((value as T)[f]));
-}
-
-export function isOnFunction <T> (...fns: (keyof T)[]): (value?: unknown) => value is T {
-  return (value?: unknown): value is T =>
-    isFunction(value) &&
     fns.every((f) => isFunction((value as T)[f]));
 }
 

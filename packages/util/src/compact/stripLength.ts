@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { compactFromU8a } from './fromU8a.js';
+import { compactFromU8a } from './fromU8a';
 
 /**
  * @name compactStripLength

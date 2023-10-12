@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
+// Copyright 2017-2022 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownIcon } from '../types.js';
+import type { KnownIcon } from '../types';
 
 // these are icon overrides
 export const knownIcon: KnownIcon = {

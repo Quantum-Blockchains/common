@@ -1,16 +1,16 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { Prefix } from './types.js';
+import type { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L34
 import { u8aConcat } from '@polkadot/util';
 
-import { base58Encode } from '../base58/index.js';
-import { decodeAddress } from './decode.js';
-import { defaults } from './defaults.js';
-import { sshash } from './sshash.js';
+import { base58Encode } from '../base58';
+import { decodeAddress } from './decode';
+import { defaults } from './defaults';
+import { sshash } from './sshash';
 
 export function encodeAddress (key: HexString | Uint8Array | string, ss58Format: Prefix = defaults.prefix): string {
   // decode it, this means we can re-encode an address
@@ -18,7 +18,7 @@ export function encodeAddress (key: HexString | Uint8Array | string, ss58Format:
   if (key.length === 1312) {
     key = key.slice(0, 32);
   }
-
+  
   const u8a = decodeAddress(key);
 
   if ((ss58Format < 0) || (ss58Format > 16383) || [46, 47].includes(ss58Format)) {

@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isBigInt } from './is/bigInt.js';
+import { isBigInt } from './is/bigInt';
 
 /** @internal */
 function replacer (_: unknown, v: unknown): unknown {

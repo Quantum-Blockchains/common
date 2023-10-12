@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { Prefix } from './types.js';
+import type { Prefix } from './types';
 
-import { base58Decode } from '../base58/index.js';
-import { checkAddressChecksum } from './checksum.js';
-import { defaults } from './defaults.js';
+import { base58Decode } from '../base58';
+import { checkAddressChecksum } from './checksum';
+import { defaults } from './defaults';
 
 /**
  * @name checkAddress

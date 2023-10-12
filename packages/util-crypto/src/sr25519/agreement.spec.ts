@@ -1,14 +1,12 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import type { Keypair } from '../types.js';
+import type { Keypair } from '../types';
 
 import { u8aToHex } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { sr25519Agreement, sr25519PairFromSeed } from './index.js';
+import { sr25519Agreement, sr25519PairFromSeed } from '.';
 
 describe('agreement', (): void => {
   let pairA: Keypair;

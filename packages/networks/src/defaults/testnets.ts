@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
+// Copyright 2017-2022 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownTestnet } from '../types.js';
+import type { KnownTestnet } from '../types';
 
 // testnets should not allow selection
 export const knownTestnet: KnownTestnet = {

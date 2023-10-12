@@ -1,8 +1,8 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { KeyringPair, KeyringPairs } from './types.js';
+import type { KeyringPair, KeyringPairs } from './types';
 
 import { isHex, isU8a, u8aToHex, u8aToU8a } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';

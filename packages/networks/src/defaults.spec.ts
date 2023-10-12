@@ -1,12 +1,10 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
+// Copyright 2017-2022 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { ledgerApps } from '@polkadot/hw-ledger/defaults';
 import { isHex } from '@polkadot/util';
 
-import { knownGenesis, knownLedger } from './defaults/index.js';
+import { knownGenesis, knownLedger } from './defaults';
 
 describe('defaults', (): void => {
   describe('genesis', (): void => {

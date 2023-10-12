@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { base58 } from '@scure/base';
 
-import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers.js';
+import { createDecode, createEncode, createIs, createValidate } from '../base32/helpers';
 
 const config = {
   chars: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',

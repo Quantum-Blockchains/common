@@ -1,20 +1,18 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
+// Copyright 2017-2022 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
+import type { SubstrateNetwork } from './types';
 
-import type { SubstrateNetwork } from './types.js';
-
-import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults/index.js';
-import { allNetworks, availableNetworks, selectableNetworks } from './index.js';
+import { knownGenesis, knownIcon, knownLedger, knownTestnet } from './defaults';
+import { allNetworks, availableNetworks, selectableNetworks } from '.';
 
 describe('availableNetworks', (): void => {
   it('has the correct starting order', (): void => {
     expect(availableNetworks.slice(0, 3).map(({ prefix }) => prefix)).toEqual([0, 2, 42]);
   });
 
-  it('has a sorted list (first external, last external)', (): void => {
-    expect(availableNetworks[3].displayName).toEqual('3DP network');
+  it.skip('has a sorted list (first external, last external)', (): void => {
+    expect(availableNetworks[3].displayName).toEqual('Acala');
     expect(availableNetworks[availableNetworks.length - 1].displayName).toEqual('ZERO');
   });
 
@@ -114,7 +112,7 @@ describe('selectableNetworks', (): void => {
   });
 
   it('has a sorted list (first external, last external)', (): void => {
-    expect(selectableNetworks[3].displayName).toEqual('3DP network');
-    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('Zeitgeist');
+    expect(selectableNetworks[3].displayName).toEqual('Acala');
+    expect(selectableNetworks[selectableNetworks.length - 1].displayName).toEqual('xx network');
   });
 });

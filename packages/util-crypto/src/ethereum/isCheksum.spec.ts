@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { isEthereumChecksum } from './index.js';
+import { isEthereumChecksum } from './';
 
 const ADDRESS = '0x00a329c0648769A73afAc7F9381E08FB43dBEA72';
 

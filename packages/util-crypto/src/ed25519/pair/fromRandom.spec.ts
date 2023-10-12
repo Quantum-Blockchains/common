@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
+import type { Keypair } from '../../types';
 
-import type { Keypair } from '../../types.js';
-
-import { ed25519PairFromRandom } from '../index.js';
+import { ed25519PairFromRandom } from '..';
 
 describe('ed25519PairFromRandom', (): void => {
   let keypair: Keypair;

@@ -1,15 +1,15 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { Prefix } from './types.js';
+import type { Prefix } from './types';
 
 // Original implementation: https://github.com/paritytech/polka-ui/blob/4858c094684769080f5811f32b081dd7780b0880/src/polkadot.js#L6
 import { isHex, isU8a, u8aToU8a } from '@polkadot/util';
 
-import { base58Decode } from '../base58/index.js';
-import { checkAddressChecksum } from './checksum.js';
-import { defaults } from './defaults.js';
+import { base58Decode } from '../base58';
+import { checkAddressChecksum } from './checksum';
+import { defaults } from './defaults';
 
 export function decodeAddress (encoded?: HexString | string | Uint8Array | null, ignoreChecksum?: boolean, ss58Format: Prefix = -1): Uint8Array {
   if (!encoded) {

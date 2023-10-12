@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { isUtf8 } from './index.js';
+import { isUtf8 } from '.';
 
 describe('isUtf8', (): void => {
   it('returns true for an ASCII string', (): void => {
@@ -26,7 +24,7 @@ describe('isUtf8', (): void => {
     expect(isUtf8()).toEqual(false);
   });
 
-  it('is valid for ru', (): void => {
+  it('it is valid for ru', (): void => {
     expect(isUtf8('Приветствую, ми')).toEqual(true);
   });
 

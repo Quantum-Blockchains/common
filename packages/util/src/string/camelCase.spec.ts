@@ -1,13 +1,11 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { getRandomValues } from '@polkadot/x-randomvalues';
 
-import { arrayRange } from '../array/index.js';
-import { perf } from '../test/index.js';
-import { stringCamelCase, stringUpperFirst } from './index.js';
+import { arrayRange } from '../array';
+import { perf } from '../test/performance';
+import { stringCamelCase, stringUpperFirst } from '.';
 
 const SEPS = [' ', '_', '-', '.', ','];
 const words = 'bring|brisk|broccoli|broken|bronze|broom|brother|brown|brush|bubble|buddy|budget|buffalo|build|bulb|bulk|bullet|bundle|bunker|burden'.split('|');

@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { DeriveJunction } from '../key/DeriveJunction.js';
-import type { Prefix } from './types.js';
+import type { DeriveJunction } from '../key/DeriveJunction';
+import type { Prefix } from './types';
 
-import { keyExtractPath } from '../key/index.js';
-import { sr25519DerivePublic } from '../sr25519/index.js';
-import { decodeAddress } from './decode.js';
-import { encodeAddress } from './encode.js';
+import { keyExtractPath } from '../key';
+import { sr25519DerivePublic } from '../sr25519';
+import { decodeAddress } from './decode';
+import { encodeAddress } from './encode';
 
 function filterHard ({ isHard }: DeriveJunction): boolean {
   return isHard;

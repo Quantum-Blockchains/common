@@ -3,7 +3,7 @@
 
 import { compactAddLength, isU8a, stringToU8a, u8aConcat } from '@polkadot/util';
 
-import { blake2AsU8a } from '../blake2/asU8a.js';
+import { blake2AsU8a } from '../blake2/asU8a';
 
 const HDKD = compactAddLength(stringToU8a('Dilithium2HDKD'));
 

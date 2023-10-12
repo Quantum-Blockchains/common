@@ -1,21 +1,11 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { stringToU8a } from '@polkadot/util';
 
-import { base64Decode } from './index.js';
+import { base64Decode } from '.';
 
 describe('base64Decode', (): void => {
-  it('decodes an empty string)', (): void => {
-    expect(
-      base64Decode('')
-    ).toEqual(
-      stringToU8a('')
-    );
-  });
-
   it('decodes a mixed base64 utf8 string (1)', (): void => {
     expect(
       base64Decode('aGVsbG8gd29ybGQg0J/RgNC40LLQtdGC0YHRgtCy0YPRjiDQvNC4IOS9oOWlvQ==')

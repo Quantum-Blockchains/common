@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
 
 import { BN, bnToU8a, compactAddLength, hexToU8a, isBigInt, isBn, isHex, isNumber, isString, stringToU8a } from '@polkadot/util';
 
-import { blake2AsU8a } from '../blake2/asU8a.js';
-import { BN_LE_256_OPTS } from '../bn.js';
+import { blake2AsU8a } from '../blake2/asU8a';
+import { BN_LE_256_OPTS } from '../bn';
 
 const RE_NUMBER = /^\d+$/;
 

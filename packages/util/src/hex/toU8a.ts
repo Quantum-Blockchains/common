@@ -1,13 +1,13 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '../types.js';
+import type { HexString } from '../types';
 
 const CHR = '0123456789abcdef';
-const U8 = new Uint8Array(256);
-const U16 = new Uint8Array(256 * 256);
+const U8 = new Array<number>(256);
+const U16 = new Array<number>(256 * 256);
 
-for (let i = 0, count = CHR.length; i < count; i++) {
+for (let i = 0; i < CHR.length; i++) {
   U8[CHR[i].charCodeAt(0) | 0] = i | 0;
 
   if (i > 9) {

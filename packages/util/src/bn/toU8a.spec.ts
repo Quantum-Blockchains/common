@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { arrayRange } from '../array/index.js';
-import { perf } from '../test/index.js';
-import { BN, bnToU8a } from './index.js';
+import { arrayRange } from '../array';
+import { perf } from '../test/performance';
+import { BN, bnToU8a } from '.';
 
 const ptest = arrayRange(65536).map((v) => [v]);
 
@@ -95,7 +93,7 @@ describe('bnToU8a', (): void => {
       ).toEqual(new Uint8Array([46, 251, 255, 255]));
     });
 
-    it('converts negative numbers (LE, bitLength, check)', (): void => {
+    it('converts negative numbers (LE, bitLength)', (): void => {
       expect(
         bnToU8a(new BN(-123456), { bitLength: 32, isNegative: true })
       ).toEqual(new Uint8Array([192, 29, 254, 255]));

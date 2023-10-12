@@ -1,29 +1,16 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn.js';
-import type { ToBn } from '../types.js';
+import type { BN } from '../bn/bn';
+import type { ToBn } from '../types';
 
-import { bnToBn } from '../bn/toBn.js';
-import { formatDecimal } from './formatDecimal.js';
-import { getSeparator } from './getSeparator.js';
-
-interface Options {
-  /**
-   * @description The locale to use
-   */
-  locale?: string;
-}
+import { bnToBn } from '../bn/toBn';
+import { formatDecimal } from './formatDecimal';
 
 /**
  * @name formatNumber
- * @description Formats a number into string format with thousand separators
+ * @description Formats a number into string format with thousand seperators
  */
-export function formatNumber <ExtToBn extends ToBn> (
-  value?: ExtToBn | BN | bigint | number | null,
-  { locale = 'en' }: Options = {}
-): string {
-  const { thousand } = getSeparator(locale);
-
-  return formatDecimal(bnToBn(value).toString(), thousand);
+export function formatNumber <ExtToBn extends ToBn> (value?: ExtToBn | BN | bigint | number | null): string {
+  return formatDecimal(bnToBn(value).toString());
 }

@@ -1,8 +1,8 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
-import type { Keypair } from '../types.js';
+import type { Keypair } from '../types';
 
 import { u8aToU8a } from '@polkadot/util';
 import { sr25519Sign as wasmSign } from '@polkadot/wasm-crypto';

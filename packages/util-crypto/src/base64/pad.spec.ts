@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { base64Pad } from './index.js';
+import { base64Pad } from '.';
 
 describe('base64Pad', (): void => {
   it('pads a utf-8 string', (): void => {

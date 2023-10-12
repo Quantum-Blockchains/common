@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Prefix } from './types.js';
+import type { Prefix } from './types';
 
 import { logger } from '@polkadot/util';
 
-import { defaults } from './defaults.js';
+import { defaults } from './defaults';
 
 const l = logger('setSS58Format');
 

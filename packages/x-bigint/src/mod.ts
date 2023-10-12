@@ -1,4 +1,8 @@
-// Copyright 2017-2023 @polkadot/x-bigint authors & contributors
+// Copyright 2017-2022 @polkadot/x-bigint authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export * from './index.js';
+export { packageInfo } from './packageInfo';
+
+const _BigInt = BigInt;
+
+export { _BigInt as BigInt };

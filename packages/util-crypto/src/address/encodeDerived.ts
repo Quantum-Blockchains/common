@@ -1,13 +1,13 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
 import type { HexString } from '@polkadot/util/types';
-import type { Prefix } from './types.js';
+import type { Prefix } from './types';
 
-import { decodeAddress } from './decode.js';
-import { encodeAddress } from './encode.js';
-import { createKeyDerived } from './keyDerived.js';
+import { decodeAddress } from './decode';
+import { encodeAddress } from './encode';
+import { createKeyDerived } from './keyDerived';
 
 /**
  * @name encodeDerivedAddress

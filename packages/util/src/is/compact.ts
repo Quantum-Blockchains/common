@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from '../bn/bn.js';
+import type { BN } from '../bn/bn';
 
-import { isOnObject } from './helpers.js';
+import { isOnObject } from './helpers';
 
 interface Compact<T> {
   toBigInt (): bigint;

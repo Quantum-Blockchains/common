@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { arrayRange } from './index.js';
+import { arrayRange } from '.';
 
 describe('arrayRange', (): void => {
   it('does not allow 0 values', (): void => {
@@ -12,13 +10,13 @@ describe('arrayRange', (): void => {
     ).toThrow(/Expected non-zero, positive number as a range size/);
   });
 
-  it('creates a range of the specified length', (): void => {
+  it('it creates a range of the specified length', (): void => {
     expect(
       arrayRange(10)
     ).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
   });
 
-  it('creates a range of the specified length, with offset', (): void => {
+  it('it creates a range of the specified length, with offset', (): void => {
     expect(
       arrayRange(7, 3)
     ).toEqual([3, 4, 5, 6, 7, 8, 9]);

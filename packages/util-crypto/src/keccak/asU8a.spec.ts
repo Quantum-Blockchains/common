@@ -1,13 +1,11 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { hexToU8a, stringToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test/index.js';
-import { keccakAsU8a } from './index.js';
+import { performanceWasm } from '../test/performance';
+import { keccakAsU8a } from '.';
 
 describe('keccakAsU8a', (): void => {
   beforeEach(async (): Promise<void> => {
@@ -24,33 +22,29 @@ describe('keccakAsU8a', (): void => {
     )
   };
 
-  for (const bitLength of [256, 512] as const) {
-    describe(`bitLength=${bitLength}`, (): void => {
-      for (const onlyJs of [false, true]) {
-        describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
-          it('returns an hex representation (string)', (): void => {
-            expect(
-              keccakAsU8a(input, bitLength, onlyJs)
-            ).toEqual(output[bitLength]);
-          });
+  describe.each([256, 512] as (256 | 512)[])('bitLength=$p', (bitLength): void => {
+    describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+      it('returns an hex representation (string)', (): void => {
+        expect(
+          keccakAsU8a(input, bitLength, onlyJs)
+        ).toEqual(output[bitLength]);
+      });
 
-          it('returns an hex representation (Buffer)', (): void => {
-            expect(
-              keccakAsU8a(Buffer.from(input), bitLength, onlyJs)
-            ).toEqual(output[bitLength]);
-          });
+      it('returns an hex representation (Buffer)', (): void => {
+        expect(
+          keccakAsU8a(Buffer.from(input), bitLength, onlyJs)
+        ).toEqual(output[bitLength]);
+      });
 
-          it('returns an hex representation (Uint8Array)', (): void => {
-            expect(
-              keccakAsU8a(stringToU8a(input), bitLength, onlyJs)
-            ).toEqual(output[bitLength]);
-          });
-        });
-      }
-
-      perfWasm(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
-        keccakAsU8a(input, bitLength, onlyJs)
-      );
+      it('returns an hex representation (Uint8Array)', (): void => {
+        expect(
+          keccakAsU8a(stringToU8a(input), bitLength, onlyJs)
+        ).toEqual(output[bitLength]);
+      });
     });
-  }
+
+    performanceWasm(`keccakAsU8a, bitLength=${bitLength}`, 128000, (input, onlyJs) =>
+      keccakAsU8a(input, bitLength, onlyJs)
+    );
+  });
 });

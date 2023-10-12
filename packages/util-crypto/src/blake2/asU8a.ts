@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -8,7 +8,7 @@ import { blake2b as blake2bJs } from '@noble/hashes/blake2b';
 import { hasBigInt, u8aToU8a } from '@polkadot/util';
 import { blake2b, isReady } from '@polkadot/wasm-crypto';
 
-import { createAsHex } from '../helpers.js';
+import { createAsHex } from '../helpers';
 
 /**
  * @name blake2AsU8a
@@ -30,13 +30,11 @@ export function blake2AsU8a (data: HexString | Uint8Array | string, bitLength: 6
 
   return !hasBigInt || (!onlyJs && isReady())
     ? blake2b(u8a, u8aToU8a(key), byteLength)
-    : key
-      ? blake2bJs(u8a, { dkLen: byteLength, key })
-      : blake2bJs(u8a, { dkLen: byteLength });
+    : blake2bJs(u8a, { dkLen: byteLength, key: key || undefined });
 }
 
 /**
  * @name blake2AsHex
  * @description Creates a blake2b hex from the input.
  */
-export const blake2AsHex = /*#__PURE__*/ createAsHex(blake2AsU8a);
+export const blake2AsHex = createAsHex(blake2AsU8a);

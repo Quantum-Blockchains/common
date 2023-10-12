@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { hexToString } from './index.js';
+import { hexToString } from '.';
 
 describe('hexToString', (): void => {
   it('converts an empty to ""', (): void => {

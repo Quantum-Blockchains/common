@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { isArray } from './index.js';
+import { isArray } from '.';
 
 describe('isArray', (): void => {
   it('is false on no value', (): void => {

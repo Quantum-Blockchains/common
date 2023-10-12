@@ -1,12 +1,12 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types.js';
+import type { Keypair } from '../../types';
 
 import { stringToU8a } from '@polkadot/util';
 
-import { blake2AsU8a } from '../../blake2/asU8a.js';
-import { dilithium2PairFromSeed } from './fromSeed.js';
+import { blake2AsU8a } from '../../blake2/asU8a';
+import { dilithium2PairFromSeed } from './fromSeed';
 
 /**
  * @name dilithium2PairFromString

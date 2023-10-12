@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
 
-import { ed25519 } from '@noble/curves/ed25519';
+import nacl from 'tweetnacl';
 
-import { hasBigInt, u8aToU8a } from '@polkadot/util';
+import { u8aToU8a } from '@polkadot/util';
 import { ed25519Verify as wasmVerify, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -33,11 +33,7 @@ export function ed25519Verify (message: HexString | Uint8Array | string, signatu
     throw new Error(`Invalid signature, received ${signatureU8a.length} bytes, expected 64`);
   }
 
-  try {
-    return !hasBigInt || (!onlyJs && isReady())
-      ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)
-      : ed25519.verify(signatureU8a, messageU8a, publicKeyU8a);
-  } catch {
-    return false;
-  }
+  return !onlyJs && isReady()
+    ? wasmVerify(signatureU8a, messageU8a, publicKeyU8a)
+    : nacl.sign.detached.verify(messageU8a, signatureU8a, publicKeyU8a);
 }

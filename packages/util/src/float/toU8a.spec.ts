@@ -1,13 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { u8aToHex } from '../u8a/index.js';
-import { floatToU8a } from './index.js';
-
-// NOTE Hex value outputs created via online conversion tool:
-// https://www.h-schmidt.net/FloatConverter/IEEE754.html
+import { u8aToHex } from '../u8a';
+import { floatToU8a } from '.';
 
 describe('floatToU8a', (): void => {
   it('throws on invalid bitLength', (): void => {
@@ -59,18 +54,9 @@ describe('floatToU8a', (): void => {
           foo = 'bar';
         }
 
+        // https://www.h-schmidt.net/FloatConverter/IEEE754.html
         expect(
           u8aToHex(floatToU8a(new Test(123.456)))
-        ).toEqual('0x79e9f642');
-      });
-
-      it('encodes String 123.456', (): void => {
-        class Test extends String {
-          foo = 'bar';
-        }
-
-        expect(
-          u8aToHex(floatToU8a(new Test('123.456')))
         ).toEqual('0x79e9f642');
       });
     });

@@ -1,12 +1,10 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
+import { BN } from '../bn';
+import { SQRT_MAX_SAFE_INTEGER } from './sqrt';
+import { nSqrt } from '.';
 
-import { BN } from '../bn/index.js';
-import { _sqrt2pow53n, nSqrt } from './index.js';
-
-// eslint-disable-next-line jest/no-export
 export const SQRT_TESTS: [string | number | BN | bigint, string | number][] = [
   [0, 0],
   [1, 1],
@@ -43,7 +41,7 @@ describe('nSqrt', (): void => {
         ~~Math.sqrt(
           Number.MAX_SAFE_INTEGER
         )
-      ) === _sqrt2pow53n
+      ) === SQRT_MAX_SAFE_INTEGER
     ).toEqual(true);
   });
 

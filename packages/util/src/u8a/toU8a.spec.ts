@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { perf } from '../test/index.js';
-import { u8aToU8a } from './index.js';
+import { perf } from '../test/performance';
+import { u8aToU8a } from '.';
 
 describe('u8aToU8a', (): void => {
   it('returns an empty Uint8Array when null/undefined/"" provided', (): void => {

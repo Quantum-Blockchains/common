@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { u8aToHex } from '@polkadot/util';
 
-import { hdLedger } from '../index.js';
+import { hdLedger } from '..';
 
 const MNE_0 = 'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
 const MNE_1 = 'open jelly jeans corn ketchup supreme brief element armed lens vault weather original scissors rug priority vicious lesson raven spot gossip powder person volcano';

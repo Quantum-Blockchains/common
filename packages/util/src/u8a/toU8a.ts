@@ -1,13 +1,13 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { U8aLike } from '../types.js';
+import type { U8aLike } from '../types';
 
-import { hexToU8a } from '../hex/toU8a.js';
-import { isBuffer } from '../is/buffer.js';
-import { isHex } from '../is/hex.js';
-import { isU8a } from '../is/u8a.js';
-import { stringToU8a } from '../string/toU8a.js';
+import { hexToU8a } from '../hex/toU8a';
+import { isBuffer } from '../is/buffer';
+import { isHex } from '../is/hex';
+import { isU8a } from '../is/u8a';
+import { stringToU8a } from '../string/toU8a';
 
 /**
  * @name u8aToU8a
@@ -26,15 +26,10 @@ import { stringToU8a } from '../string/toU8a.js';
  */
 export function u8aToU8a (value?: U8aLike | null): Uint8Array {
   return isU8a(value)
-    // NOTE isBuffer needs to go here since it actually extends
-    // Uint8Array on Node.js environments, so all Buffer are Uint8Array,
-    // but Uint8Array is not Buffer
-    ? isBuffer(value)
-      ? new Uint8Array(value)
-      : value
+    ? value
     : isHex(value)
       ? hexToU8a(value)
-      : Array.isArray(value)
+      : isBuffer(value) || Array.isArray(value)
         ? new Uint8Array(value)
         : stringToU8a(value);
 }

@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { perf } from '../test/index.js';
-import { u8aToNumber } from './index.js';
+import { perf } from '../test/performance';
+import { u8aToNumber } from '.';
 
 describe('u8aToNumber', (): void => {
   describe('unsigned', (): void => {
@@ -132,6 +130,6 @@ describe('u8aToNumber', (): void => {
     });
   });
 
-  perf('u8aToNumber (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
-  perf('u8aToNumber (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
+  perf('u8aToNumber (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToNumber);
+  perf('u8aToNumber (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToNumber(v, { isNegative: true }));
 });

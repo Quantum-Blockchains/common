@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { bufferToU8a } from './index.js';
+import { bufferToU8a } from '.';
 
 describe('bufferToU8a', (): void => {
   it('returns an empty buffer when null provided', (): void => {

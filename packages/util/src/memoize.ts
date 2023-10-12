@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Memoized } from './types.js';
+import type { Memoized } from './types';
 
-import { stringify } from './stringify.js';
+import { stringify } from './stringify';
 
 interface Options {
   getInstanceId?: () => string;

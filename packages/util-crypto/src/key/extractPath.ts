@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { DeriveJunction } from './DeriveJunction.js';
+import { DeriveJunction } from './DeriveJunction';
 
 const RE_JUNCTION = /\/(\/?)([^/]+)/g;
 

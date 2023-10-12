@@ -1,18 +1,10 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { base32Decode } from '../base32/index.js';
-import { base58Decode } from './index.js';
+import { base32Decode } from '../base32';
+import { base58Decode } from './';
 
 describe('base58Encode', (): void => {
-  it('decodes an empty string)', (): void => {
-    expect(
-      base58Decode('')
-    ).toEqual(new Uint8Array());
-  });
-
   it('encodes a base58 to a base32', (): void => {
     expect(
       base58Decode('b2rhk6GMPQF3hfzwXTaNYFLKomMeC6UXdUt6jZKPpeVirLtV')

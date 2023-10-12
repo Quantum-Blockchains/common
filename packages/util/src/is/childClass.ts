@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Class } from '../types.js';
-
-import { isClass } from './class.js';
+import type { Constructor } from '../types';
 
 /**
  * @name isChildClass
@@ -20,10 +18,10 @@ import { isClass } from './class.js';
  * console.log('isChildClass', isChildClass(BN, Uint8Array); // => false
  * ```
  */
-export function isChildClass <P extends Class> (Parent: P, Child?: unknown): Child is P {
+export function isChildClass <P extends Constructor> (Parent: P, Child?: Constructor | null | unknown): Child is P {
   // https://stackoverflow.com/questions/30993434/check-if-a-constructor-inherits-another-in-es6/30993664
-  return isClass(Child) && isClass(Parent)
+  return Child
     // eslint-disable-next-line no-prototype-builtins
-    ? Parent === Child || Parent.isPrototypeOf(Child)
+    ? Parent === Child || Parent.isPrototypeOf(Child as Constructor)
     : false;
 }

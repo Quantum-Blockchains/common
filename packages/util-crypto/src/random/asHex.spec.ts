@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { isHex } from '@polkadot/util';
 
-import { randomAsHex } from './index.js';
+import { randomAsHex } from '.';
 
 describe('randomAsBuffer', (): void => {
   it('generated results does not match', (): void => {

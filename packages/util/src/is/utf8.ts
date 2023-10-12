@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Adapted from https://github.com/JulienPalard/is_utf8/blob/master/is_utf8.c
 
-import type { HexString } from '../types.js';
+import type { HexString } from '../types';
 
-import { u8aToU8a } from '../u8a/toU8a.js';
-import { isString } from './string.js';
+import { u8aToU8a } from '../u8a/toU8a';
+import { isString } from './string';
 
 /**
  * @name isUtf8
@@ -14,7 +14,7 @@ import { isString } from './string.js';
  * @description
  * Checks to see if the input string or Uint8Array is valid Utf8
  */
-export function isUtf8 (value?: HexString | number[] | Uint8Array | string | null): boolean {
+export function isUtf8 (value?: HexString | number[] | Buffer | Uint8Array | string | null): boolean {
   if (!value) {
     return isString(value);
   }

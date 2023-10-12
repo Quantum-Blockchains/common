@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types.js';
+import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta } from '../types';
 
 // empty publicKey
 const publicKey = new Uint8Array(32);
@@ -28,32 +28,48 @@ const json: KeyringPair$Json = {
 const pair: KeyringPair = {
   address,
   addressRaw: publicKey,
-  decodePkcs8: (_passphrase?: string, _encoded?: Uint8Array): void =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  decodePkcs8: (passphrase?: string, encoded?: Uint8Array): void =>
     undefined,
-  derive: (_suri: string, _meta?: KeyringPair$Meta): KeyringPair =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  decryptMessage: (encryptedMessageWithNonce: string | Uint8Array, senderPublicKey: string | Uint8Array): Uint8Array | null =>
+    null,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  derive: (suri: string, meta?: KeyringPair$Meta): KeyringPair =>
     pair,
-  encodePkcs8: (_passphrase?: string): Uint8Array =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  encodePkcs8: (passphrase?: string): Uint8Array =>
     new Uint8Array(0),
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  encryptMessage: (message: string | Uint8Array, recipientPublicKey: string | Uint8Array, _nonce?: Uint8Array): Uint8Array =>
+    new Uint8Array(),
   isLocked: true,
   lock: (): void => {
     // no locking, it is always locked
   },
   meta,
   publicKey,
-  setMeta: (_meta: KeyringPair$Meta): void =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  setMeta: (meta: KeyringPair$Meta): void =>
     undefined,
-  sign: (_message: Uint8Array): Uint8Array =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  sign: (message: Uint8Array): Uint8Array =>
     new Uint8Array(64),
-  toJson: (_passphrase?: string): KeyringPair$Json =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  toJson: (passphrase?: string): KeyringPair$Json =>
     json,
   type: 'ed25519',
-  unlock: (_passphrase?: string): void =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  unlock: (passphrase?: string): void =>
     undefined,
-  verify: (_message: Uint8Array, _signature: Uint8Array): boolean =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  verify: (message: Uint8Array, signature: Uint8Array): boolean =>
     false,
-  vrfSign: (_message: Uint8Array, _context?: string | Uint8Array, _extra?: string | Uint8Array): Uint8Array =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  vrfSign: (message: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): Uint8Array =>
     new Uint8Array(96),
-  vrfVerify: (_message: Uint8Array, _vrfResult: Uint8Array, _context?: string | Uint8Array, _extra?: string | Uint8Array): boolean =>
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  vrfVerify: (message: Uint8Array, vrfResult: Uint8Array, context?: string | Uint8Array, extra?: string | Uint8Array): boolean =>
     false
 };
 

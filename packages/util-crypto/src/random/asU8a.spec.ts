@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { isU8a } from '@polkadot/util';
 
-import { randomAsU8a } from './index.js';
+import { randomAsU8a } from '.';
 
 describe('randomAsU8a', (): void => {
   it('generates a Uint8Array', (): void => {

@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { base32Validate } from './index.js';
+import { base32Validate } from '.';
 
 describe('base32Validate', (): void => {
   it('validates encoded', (): void => {
@@ -18,10 +16,10 @@ describe('base32Validate', (): void => {
     ).toEqual(true);
   });
 
-  it('does not fail on empty', (): void => {
+  it('fails on empty', (): void => {
     expect(
-      base32Validate('')
-    ).toEqual(true);
+      () => base32Validate('')
+    ).toThrow(/Expected/);
   });
 
   it('fails on non-string', (): void => {

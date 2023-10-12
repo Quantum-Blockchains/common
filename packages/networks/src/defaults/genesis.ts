@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/networks authors & contributors
+// Copyright 2017-2022 @polkadot/networks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KnownGenesis } from '../types.js';
+import type { KnownGenesis } from '../types';
 
 // NOTE: In the case where the network was hard-spooned and multiple genesisHashes
 // are provided, it needs to be in reverse order, i.e. most-recent first, oldest
@@ -29,15 +29,9 @@ export const knownGenesis: KnownGenesis = {
   'bifrost-kusama': [
     '0x9f28c6a68e0fc9646eff64935684f6eeeece527e37bbe1f213d22caa1d9d6bed'
   ],
-  bittensor: [
-    '0x2f0555cc76fc2840a25a6ea3b9637146806f1f44b090c175ffde2a7e5ab36c03'
-  ],
   centrifuge: [
     '0xb3db41421702df9a7fcac62b53ffeac85f7853cc4e689e0b93aeb3db18c09d82',
     '0x67dddf2673b69e5f875f6f25277495834398eafd67f492e09f3f3345e003d1b5'
-  ],
-  cere: [
-    '0x81443836a9a24caaa23f1241897d1235717535711d1d3fe24eae4fdc942c092c'
   ],
   composable: [
     '0xdaab8df776eb52ec604a5df5d388bb62a050a0aaec4556a64265b9d42755552d'
@@ -82,26 +76,19 @@ export const knownGenesis: KnownGenesis = {
     '0xe3777fa922cafbff200cadeaea1a76bd7898ad5b89f7848999058b50e715f636', // Kusama CC2
     '0x3fd7b9eb6a00376e5be61f01abb429ffb0b104be05eaff4d458da48fcd425baf' // Kusama CC1
   ],
-  nodle: [
+  'nodle-para': [
     '0x97da7ede98d7bad4e36b4d734b6055425a3be036da2a332ea5a7037656427a21'
   ],
   origintrail: [
     '0xe7e0962324a3b86c83404dbea483f25fb5dab4c224791c81b756cfc948006174'
   ],
-  p3d: [
-    '0x6c5894837ad89b6d92b114a2fb3eafa8fe3d26a54848e3447015442cd6ef4e66'
-  ],
   parallel: [
     '0xe61a41c53f5dcd0beb09df93b34402aada44cb05117b71059cce40a2723a4e97'
-  ],
-  pendulum: [
-    '0x5d3c298622d5634ed019bf61ea4b71655030015bde9beb0d6a24743714462c86'
   ],
   phala: [
     '0x1bb969d85965e4bb5a651abbedf21a54b6b31a21f66b5401cc3f1e286268d736'
   ],
   picasso: [
-    '0x6811a339673c9daa897944dcdac99c6e2939cc88245ed21951a0a3c9a2be75bc',
     '0xe8e7f0f4c4f5a00720b4821dbfddefea7490bcf0b19009961cc46957984e2c1c'
   ],
   polkadex: [
@@ -142,9 +129,6 @@ export const knownGenesis: KnownGenesis = {
   subsocial: [
     '0x0bd72c1c305172e1275278aaeb3f161e02eccb7a819e63f62d47bd53a28189f8'
   ],
-  ternoa: [
-    '0x6859c81ca95ef624c9dfe4dc6e3381c33e5d6509e35e147092bfbc780f777c4e'
-  ],
   unique: [
     '0x84322d9cddbf35088f1e54e9a85c967a41a56a4f43445768125e61af166c7d31'
   ],
@@ -157,8 +141,5 @@ export const knownGenesis: KnownGenesis = {
   ],
   xxnetwork: [
     '0x50dd5d206917bf10502c68fb4d18a59fc8aa31586f4e8856b493e43544aa82aa'
-  ],
-  zeitgeist: [
-    '0x1bf2a2ecb4a868de66ea8610f2ce7c8c43706561b6476031315f6640fe38e060'
   ]
 };

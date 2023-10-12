@@ -1,17 +1,13 @@
-// Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
+// Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// CJS, so we use import * syntax
-import type * as HwTransport from '@ledgerhq/hw-transport';
+import Transport from '@ledgerhq/hw-transport';
 
-// u2f is deprecated an therefore not added
-export type TransportType = 'hid' | 'webusb';
-
-export type Transport = HwTransport.default;
+export type LedgerTypes = 'hid' | 'u2f' | 'webusb';
 
 export interface TransportDef {
   /** Create a transport to be used in Ledger operations */
   create (): Promise<Transport>;
   /** The type of the underlying transport definition */
-  type: TransportType;
+  type: LedgerTypes;
 }

@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
 import type { KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringInstance, KeyringOptions } from './types.js';
+import type { KeyringInstance, KeyringOptions } from './types';
 
 import { hexToU8a } from '@polkadot/util';
 
-import { createPair } from './pair/index.js';
-import { Keyring } from './keyring.js';
+import { Keyring } from './keyring';
+import { createPair } from './pair';
 
 interface PairDef {
   name?: string;

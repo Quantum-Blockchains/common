@@ -1,22 +1,22 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Originally from https://github.com/polkadot-js/extension/pull/743
 
-import type { U8aLike } from '../types.js';
+import type { U8aLike } from '../types';
 
-import { u8aConcatStrict } from './concat.js';
-import { u8aEq } from './eq.js';
-import { u8aToU8a } from './toU8a.js';
-
-/** @internal */
-export const U8A_WRAP_ETHEREUM = /*#__PURE__*/ u8aToU8a('\x19Ethereum Signed Message:\n');
+import { u8aConcatStrict } from './concat';
+import { u8aEq } from './eq';
+import { u8aToU8a } from './toU8a';
 
 /** @internal */
-export const U8A_WRAP_PREFIX = /*#__PURE__*/ u8aToU8a('<Bytes>');
+export const U8A_WRAP_ETHEREUM = u8aToU8a('\x19Ethereum Signed Message:\n');
 
 /** @internal */
-export const U8A_WRAP_POSTFIX = /*#__PURE__*/ u8aToU8a('</Bytes>');
+export const U8A_WRAP_PREFIX = u8aToU8a('<Bytes>');
+
+/** @internal */
+export const U8A_WRAP_POSTFIX = u8aToU8a('</Bytes>');
 
 const WRAP_LEN = U8A_WRAP_PREFIX.length + U8A_WRAP_POSTFIX.length;
 

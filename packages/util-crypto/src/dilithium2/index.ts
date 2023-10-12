@@ -4,9 +4,9 @@
 /**
  * @summary Implements dilithium2 operations
  */
-export { dilithium2PairFromRandom } from './pair/fromRandom.js';
-export { dilithium2PairFromSeed } from './pair/fromSeed.js';
-export { dilithium2PairFromString } from './pair/fromString.js';
-export { dilithium2Sign } from './sign.js';
-export { dilithium2Verify } from './verify.js';
-export { dilithium2DeriveHard } from './deriveHard.js';
+export { dilithium2PairFromRandom } from './pair/fromRandom';
+export { dilithium2PairFromSeed } from './pair/fromSeed';
+export { dilithium2PairFromString } from './pair/fromString';
+export { dilithium2Sign } from './sign';
+export { dilithium2Verify } from './verify';
+export { dilithium2DeriveHard } from './deriveHard';

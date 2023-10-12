@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
+export {};
 
 describe('cryptoWaitReady', (): void => {
   it('should return false when it cannot initialize', async (): Promise<void> => {
@@ -9,7 +9,7 @@ describe('cryptoWaitReady', (): void => {
 
     global.WebAssembly = null as unknown as typeof WebAssembly;
 
-    const { cryptoWaitReady } = await import('./crypto.js');
+    const { cryptoWaitReady } = await import('./crypto');
 
     expect(await cryptoWaitReady()).toBe(false);
 

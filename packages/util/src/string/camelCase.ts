@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AnyString } from '../types.js';
+import type { AnyString } from '../types';
 
 export const CC_TO_UP = new Array<string>(256);
 export const CC_TO_LO = new Array<string>(256);
 
-for (let i = 0, count = CC_TO_UP.length; i < count; i++) {
+for (let i = 0; i < CC_TO_UP.length; i++) {
   CC_TO_LO[i] = String.fromCharCode(i).toLowerCase();
   CC_TO_UP[i] = String.fromCharCode(i).toUpperCase();
 }
@@ -33,15 +33,16 @@ function formatAllCaps (w: string): string {
 function converter (format: (w: string, i: number) => string): (value: AnyString) => string {
   return (value: AnyString): string => {
     const parts = value
-      // replace all separators (including consequtive) with spaces
+      // replace all seperators (including consequtive) with spaces
       .replace(/[-_., ]+/g, ' ')
       // we don't want leading or trailing spaces
       .trim()
       // split into words
       .split(' ');
+    const count = parts.length;
     let result = '';
 
-    for (let i = 0, count = parts.length; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       const w = parts[i];
 
       // apply the formatting

@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { BN, hexToBn } from '@polkadot/util';
 
-import { randomAsHex } from './asU8a.js';
+import { randomAsHex } from './asU8a';
 
 const BN_53 = new BN(0b11111111111111111111111111111111111111111111111111111);
 

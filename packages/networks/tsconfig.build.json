@@ -3,12 +3,12 @@
   "compilerOptions": {
     "baseUrl": "..",
     "outDir": "./build",
+    "resolveJsonModule": true,
     "rootDir": "./src"
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "**/test/*",
-    "**/mod.ts"
+  "include": [
+    "**/src/**/*.ts",
+    "**/test/*.json"
   ],
   "references": [
     { "path": "../hw-ledger/tsconfig.build.json" },

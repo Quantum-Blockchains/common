@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { hexToU8a } from '../hex/index.js';
-import { u8aToFloat } from './index.js';
+import { hexToU8a } from '../hex';
+import { u8aToFloat } from '.';
 
 describe('u8aToFloat', (): void => {
   it('throws on invalid bitLength', (): void => {

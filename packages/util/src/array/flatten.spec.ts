@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { perf } from '../test/index.js';
-import { arrayFlatten } from './index.js';
+import { perf } from '../test/performance';
+import { arrayFlatten } from '.';
 
 const PERF_ONE = [[1, 2, 3, 4, 5]];
 const PERF_MUL = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];

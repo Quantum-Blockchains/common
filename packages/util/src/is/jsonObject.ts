@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { stringify } from '../stringify.js';
+import { stringify } from '../stringify';
 
 interface ObjectIndexed {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,7 +41,7 @@ export function isJsonObject (value: unknown): value is ObjectIndexed {
     const obj = JSON.parse(str) as unknown;
 
     return typeof obj === 'object' && obj !== null;
-  } catch {
+  } catch (e) {
     return false;
   }
 }

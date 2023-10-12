@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -15,58 +15,7 @@ export interface KeyringOptions {
   type?: KeypairType;
 }
 
-export interface KeyringPair$MetaHardware {
-  accountIndex?: number;
-  accountOffset?: number;
-  addressOffset?: number;
-  hardwareType?: 'ledger';
-}
-
-export interface KeyringPair$MetaFlags {
-  isDefaultAuthSelected?: boolean;
-  isExternal?: boolean;
-  isHardware?: boolean;
-  isHidden?: boolean;
-  isInjected?: boolean;
-  isMultisig?: boolean;
-  isProxied?: boolean;
-  isRecent?: boolean;
-  isTesting?: boolean;
-}
-
-export interface KeyringPair$MetaContract {
-  abi: string;
-  genesisHash?: HexString | null;
-}
-
-export interface KeyringPair$MetaExtension {
-  source?: string;
-}
-
-export interface KeyringPair$MetaMultisig {
-  threshold?: number;
-  who?: string[];
-}
-
-export interface KeyringPair$MetaParent {
-  parentAddress?: string;
-  parentName?: string;
-}
-
-export interface KeyringPair$Meta extends KeyringPair$MetaExtension, KeyringPair$MetaFlags, KeyringPair$MetaHardware, KeyringPair$MetaMultisig, KeyringPair$MetaParent {
-  address?: string;
-  contract?: KeyringPair$MetaContract;
-  genesisHash?: HexString | null;
-  name?: string;
-  suri?: string;
-  tags?: string[];
-  type?: KeypairType;
-  whenCreated?: number;
-  whenEdited?: number;
-  whenUsed?: number;
-
-  [key: string]: unknown;
-}
+export type KeyringPair$Meta = Record<string, unknown>;
 
 export interface KeyringPair$Json extends EncryptedJson {
   /** The ss58 encoded address or the hex-encoded version (the latter is for ETH-compat chains) */
@@ -98,6 +47,8 @@ export interface KeyringPair {
   sign (message: HexString | string | Uint8Array, options?: SignOptions): Uint8Array;
   toJson (passphrase?: string): KeyringPair$Json;
   unlock (passphrase?: string): void;
+  encryptMessage (message: HexString | string | Uint8Array, recipientPublicKey: HexString | string | Uint8Array, nonce?: Uint8Array): Uint8Array;
+  decryptMessage (encryptedMessageWithNonce: HexString | string | Uint8Array, senderPublicKey: HexString | string | Uint8Array): Uint8Array | null;
   verify (message: HexString | string | Uint8Array, signature: Uint8Array, signerPublic: HexString | string | Uint8Array): boolean;
   vrfSign (message: HexString | string | Uint8Array, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): Uint8Array;
   vrfVerify (message: HexString | string | Uint8Array, vrfResult: Uint8Array, signerPublic: HexString | Uint8Array | string, context?: HexString | string | Uint8Array, extra?: HexString | string | Uint8Array): boolean;

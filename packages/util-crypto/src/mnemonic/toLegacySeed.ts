@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { hasBigInt } from '@polkadot/util';
 import { bip39ToSeed, isReady } from '@polkadot/wasm-crypto';
 
-import { mnemonicToSeedSync } from './bip39.js';
-import { mnemonicValidate } from './validate.js';
+import { mnemonicToSeedSync } from './bip39';
+import { mnemonicValidate } from './validate';
 
 /**
  * @name mnemonicToLegacySeed

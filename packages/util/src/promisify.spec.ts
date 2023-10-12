@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { promisify } from './index.js';
+import { promisify } from '.';
 
 describe('promisify', (): void => {
   it('handles functions with no parameters (resolve)', (): Promise<void> => {
@@ -24,7 +22,6 @@ describe('promisify', (): void => {
         throw new Error('Received unexpected result');
       })
       .catch((error: Error): void => {
-        // eslint-disable-next-line jest/no-conditional-expect
         expect(error.message).toEqual('test reject');
       });
   });
@@ -43,7 +40,6 @@ describe('promisify', (): void => {
       cb(new Error(`test reject: ${a},${b.toString()},${c}`));
 
     return promisify(null, fn, 3, 'string', true).catch((error: Error): void => {
-      // eslint-disable-next-line jest/no-conditional-expect
       expect(error.message).toEqual('test reject: 3,string,true');
     });
   });

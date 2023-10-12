@@ -1,16 +1,12 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BN } from './bn/bn.js';
+import type { BN } from './bn/bn';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface Class<T = any, A extends unknown[] = any[]> {
-  prototype: T;
-
-  new (...args: A): T;
-
-  hasOwnProperty (prop: string): boolean;
-  isPrototypeOf (other: unknown): boolean;
+export interface Constructor<T = any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  new(...value: any[]): T;
 }
 
 export interface ToBigInt {
@@ -27,12 +23,15 @@ export interface SiDef {
   value: string;
 }
 
+type Logger$Data$Fn = () => unknown[];
+export type Logger$Data = (unknown | Logger$Data$Fn)[];
+
 export interface Logger {
-  debug: (...values: unknown[]) => void;
-  error: (...values: unknown[]) => void;
-  log: (...values: unknown[]) => void;
-  noop: (...values: unknown[]) => void;
-  warn: (...values: unknown[]) => void;
+  debug: (...values: Logger$Data) => void;
+  error: (...values: Logger$Data) => void;
+  log: (...values: Logger$Data) => void;
+  noop: (...values: Logger$Data) => void;
+  warn: (...values: Logger$Data) => void;
 }
 
 export interface ToBnOptions {
@@ -52,6 +51,11 @@ export interface NumberOptions extends ToBnOptions {
    */
   bitLength?: number;
 }
+
+export type BnList = {
+  0: BN;
+  1: BN;
+} & BN[];
 
 export interface Time {
   days: number;
@@ -73,20 +77,27 @@ export type HexDigit = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 // One day when template strings support regex, we can improve this
 export type HexString = `0x${string}`;
 
-// BufferObj interface compatible with Buffer since we don't want to require
-// references to the Buffer types from the node typings
-export interface BufferObj extends Uint8Array {
-  equals: (otherBuffer: Uint8Array) => boolean;
-  readDoubleLE: (offset?: number) => number;
-}
+export type U8aLike = HexString | number[] | Buffer | Uint8Array | AnyString;
 
-// We define a scappy low-level interface to mock Buffer
-// (this removes the need for the node typings in built bundles)
-export interface BufferObjClass extends Class<BufferObj> {
-  isBuffer: (value: unknown) => boolean;
-}
+export interface IBigIntConstructor {
+  new (value: string | number | bigint | boolean): bigint;
 
-export type U8aLike = HexString | number[] | Uint8Array | AnyString;
+  /**
+  * Interprets the low bits of a BigInt as a 2's-complement signed integer.
+  * All higher bits are discarded.
+  * @param bits The number of low bits to use
+  * @param int The BigInt whose bits to extract
+  */
+  asIntN (bits: number, int: bigint): bigint;
+
+  /**
+  * Interprets the low bits of a BigInt as an unsigned integer.
+  * All higher bits are discarded.
+  * @param bits The number of low bits to use
+  * @param int The BigInt whose bits to extract
+  */
+  asUintN (bits: number, int: bigint): bigint;
+}
 
 export interface Observable {
   next: (...params: unknown[]) => unknown;

@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { keccakAsU8a } from '../keccak/index.js';
-import { ethereumEncode } from './index.js';
+import { keccakAsU8a } from '../keccak';
+import { ethereumEncode } from './';
 
 describe('formatAddress', () => {
   describe('address to address encoding', (): void => {
@@ -17,7 +15,7 @@ describe('formatAddress', () => {
     it('returns fails on invalid address', () => {
       expect(
         () => ethereumEncode('0xnotaddress')
-      ).toThrow(/Invalid address or publicKey provided/);
+      ).toThrow(/Invalid address or publicKey passed/);
     });
 
     it('converts lowercase to the checksummed address', () => {

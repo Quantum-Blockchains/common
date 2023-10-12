@@ -1,16 +1,14 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /**
  * @summary Utility methods to convert to and from `bigint` objects
  */
 
-// all named
-export { nMax, nMin } from './min.js';
-export { nSqrt } from './sqrt.js';
-export { nToBigInt } from './toBigInt.js';
-export { nToHex } from './toHex.js';
-export { nToU8a } from './toU8a.js';
+export * from './consts';
 
-// all starred
-export * from './consts.js';
+export { nSqrt } from './sqrt';
+export { nToBigInt } from './toBigInt';
+export { nMax, nMin } from './min';
+export { nToHex } from './toHex';
+export { nToU8a } from './toU8a';

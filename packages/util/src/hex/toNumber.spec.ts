@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { hexToNumber } from './index.js';
+import { hexToNumber } from '.';
 
 describe('hexToNumber', (): void => {
   it('converts an empty to NaN', (): void => {

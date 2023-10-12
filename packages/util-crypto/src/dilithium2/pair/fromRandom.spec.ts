@@ -1,9 +1,9 @@
 // Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types.js';
+import type { Keypair } from '../../types';
 
-import { dilithium2PairFromRandom } from '../index.js';
+import { dilithium2PairFromRandom } from '..';
 
 describe('dilithium2PairFromRandom', (): void => {
   let keypair: Keypair;

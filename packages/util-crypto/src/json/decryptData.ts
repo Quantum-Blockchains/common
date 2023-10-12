@@ -1,13 +1,13 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EncryptedJsonEncoding } from './types.js';
+import type { EncryptedJsonEncoding } from './types';
 
 import { stringToU8a, u8aFixLength } from '@polkadot/util';
 
-import { naclDecrypt } from '../nacl/index.js';
-import { scryptEncode, scryptFromU8a } from '../scrypt/index.js';
-import { ENCODING, NONCE_LENGTH, SCRYPT_LENGTH } from './constants.js';
+import { naclDecrypt } from '../nacl';
+import { scryptEncode, scryptFromU8a } from '../scrypt';
+import { ENCODING, NONCE_LENGTH, SCRYPT_LENGTH } from './constants';
 
 export function jsonDecryptData (encrypted?: Uint8Array | null, passphrase?: string | null, encType: EncryptedJsonEncoding[] = ENCODING): Uint8Array {
   if (!encrypted) {

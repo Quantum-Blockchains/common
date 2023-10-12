@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { HexString } from '../types.js';
+import type { HexString } from '../types';
 
-import { hexFixLength } from '../hex/fixLength.js';
+import { hexFixLength } from '../hex/fixLength';
 
 /**
  * @name numberToHex

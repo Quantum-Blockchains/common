@@ -1,11 +1,10 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keypair } from '../../types.js';
+import type { Keypair } from '../../types';
 
-import { ed25519 } from '@noble/curves/ed25519';
+import nacl from 'tweetnacl';
 
-import { hasBigInt, u8aConcatStrict } from '@polkadot/util';
 import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
 
 /**
@@ -23,7 +22,7 @@ import { ed25519KeypairFromSeed, isReady } from '@polkadot/wasm-crypto';
  * ```
  */
 export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypair {
-  if (!hasBigInt || (!onlyJs && isReady())) {
+  if (!onlyJs && isReady()) {
     const full = ed25519KeypairFromSeed(seed);
 
     return {
@@ -32,10 +31,5 @@ export function ed25519PairFromSeed (seed: Uint8Array, onlyJs?: boolean): Keypai
     };
   }
 
-  const publicKey = ed25519.getPublicKey(seed);
-
-  return {
-    publicKey,
-    secretKey: u8aConcatStrict([seed, publicKey])
-  };
+  return nacl.sign.keyPair.fromSeed(seed);
 }

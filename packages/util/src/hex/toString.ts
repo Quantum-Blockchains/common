@@ -1,8 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { u8aToString } from '../u8a/toString.js';
-import { hexToU8a } from './toU8a.js';
+import { u8aToString } from '../u8a/toString';
+import { hexToU8a } from './toU8a';
 
 /**
  * @name hexToU8a

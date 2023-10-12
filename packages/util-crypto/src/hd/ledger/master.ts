@@ -1,10 +1,10 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { u8aConcat } from '@polkadot/util';
 
-import { hmacShaAsU8a } from '../../hmac/index.js';
-import { mnemonicToSeedSync } from '../../mnemonic/bip39.js';
+import { hmacShaAsU8a } from '../../hmac';
+import { mnemonicToSeedSync } from '../../mnemonic/bip39';
 
 const ED25519_CRYPTO = 'ed25519 seed';
 

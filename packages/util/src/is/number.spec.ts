@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { isNumber } from './index.js';
+import { isNumber } from '.';
 
 describe('isNumber', (): void => {
   it('returns true on valid numbers', (): void => {

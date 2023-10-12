@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { BN, bnToHex } from './index.js';
+import { BN, bnToHex } from '.';
 
 describe('bnToHex', (): void => {
   it('converts null values to 0x00', (): void => {

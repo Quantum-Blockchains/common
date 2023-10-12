@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { PairInfo } from './types.js';
+import type { PairInfo } from './types';
 
 import { u8aConcat } from '@polkadot/util';
 import { naclEncrypt, scryptEncode, scryptToU8a } from '@polkadot/util-crypto';
 
-import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults.js';
+import { PKCS8_DIVIDER, PKCS8_HEADER } from './defaults';
 
 export function encodePair ({ publicKey, secretKey }: PairInfo, passphrase?: string): Uint8Array {
   if (!secretKey) {

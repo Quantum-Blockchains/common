@@ -1,13 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
+import { perf } from '../test/performance';
+import { u8aToBn } from '.';
 
-// import { BN } from '../bn/index.js';
-import { perf } from '../test/index.js';
-import { u8aToBn } from './index.js';
-
-// test-cases are the same as in u8aToBigInt
 describe('u8aToBn', (): void => {
   it('converts little-endian by default', (): void => {
     expect(
@@ -72,29 +68,6 @@ describe('u8aToBn', (): void => {
           ).toString(16)
         ).toBe('bc9a78563412');
       });
-
-      it('converts values (u128)', (): void => {
-        expect(
-          u8aToBn(
-            new Uint8Array([0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78]),
-            { isLe: true }
-          ).toString(16)
-        ).toBe('78563412785634127856341278563412');
-      });
-
-      for (let i = 1; i < 32; i++) {
-        const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
-        const tstr = tu8a.map((n) => n.toString(16));
-
-        it(`converts values with length ${i}`, (): void => {
-          expect(
-            u8aToBn(
-              new Uint8Array(tu8a.slice(0, i)),
-              { isLe: true }
-            ).toString(16)
-          ).toBe(tstr.slice(0, i).reverse().join(''));
-        });
-      }
     });
 
     describe('signed', (): void => {
@@ -200,15 +173,6 @@ describe('u8aToBn', (): void => {
       ).toBe('12345678');
     });
 
-    it('converts values (i32)', (): void => {
-      expect(
-        u8aToBn(
-          new Uint8Array([0xf2, 0x34, 0x56, 0x78]),
-          { isLe: false, isNegative: true }
-        ).toString(16)
-      ).toBe('-dcba988');
-    });
-
     it('converts values (u40)', (): void => {
       expect(
         u8aToBn(
@@ -226,29 +190,6 @@ describe('u8aToBn', (): void => {
         ).toString(16)
       ).toBe('123456789abc');
     });
-
-    it('converts values (u128)', (): void => {
-      expect(
-        u8aToBn(
-          new Uint8Array([0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78]),
-          { isLe: false }
-        ).toString(16)
-      ).toBe('12345678123456781234567812345678');
-    });
-
-    for (let i = 1; i < 32; i++) {
-      const tu8a = [0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78, 0x12, 0x34, 0x56, 0x78];
-      const tstr = tu8a.map((n) => n.toString(16));
-
-      it(`converts values with length ${i}`, (): void => {
-        expect(
-          u8aToBn(
-            new Uint8Array(tu8a.slice(0, i)),
-            { isLe: false }
-          ).toString(16)
-        ).toBe(tstr.slice(0, i).join(''));
-      });
-    }
   });
 
   describe('empty creation', (): void => {
@@ -318,12 +259,7 @@ describe('u8aToBn', (): void => {
     ).toBe(256);
   });
 
-  perf('u8aToBn (i32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
-
-  perf('u8aToBn (u32)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
-  perf('u8aToBn (u64)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
-  perf('u8aToBn (u128)', 750_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
-
-  // perf('BN (constructor)', 1_000_000, [[12345678]], (v: number) => new BN(v));
-  // perf('BN (constructor -> string)', 1_000_000, [[12345678]], (v: number) => new BN(v).toString());
+  perf('u8aToBn (u32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
+  perf('u8aToBn (i32)', 1_000_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c])]], (v: Uint8Array) => u8aToBn(v, { isNegative: true }));
+  perf('u8aToBn (u64)', 500_000, [[new Uint8Array([0x68, 0x65, 0x6c, 0x6c, 0x68, 0x65, 0x6c, 0x6c])]], u8aToBn);
 });

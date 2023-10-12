@@ -1,16 +1,14 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// all external
-// eslint-disable-next-line deprecation/deprecation
+import { Keyring } from './keyring';
+
 export { decodeAddress, encodeAddress, setSS58Format } from '@polkadot/util-crypto';
 
-// all named
-export { Keyring } from './keyring.js';
-export { packageInfo } from './packageInfo.js';
-export { createPair } from './pair/index.js';
-export { createTestKeyring } from './testing.js';
-export { createTestPairs } from './testingPairs.js';
+export * from './defaults';
+export { createPair } from './pair';
+export { packageInfo } from './packageInfo';
+export { createTestKeyring } from './testing';
+export { createTestPairs } from './testingPairs';
 
-// all starred
-export * from './defaults.js';
+export { Keyring };

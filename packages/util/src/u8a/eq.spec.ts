@@ -1,16 +1,14 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { perf } from '../test/index.js';
-import { u8aEq } from './index.js';
+import { perf } from '../test/performance';
+import { u8aEq } from '.';
 
 const ltest = new Uint8Array(32768);
 const stest = new Uint8Array(256);
 const ztest = new Uint8Array(64);
 
-for (let i = 0, count = ltest.length; i < count; i++) {
+for (let i = 0; i < ltest.length; i++) {
   if (i < ztest.length) {
     ztest[i] = i % 256;
   }
@@ -98,7 +96,7 @@ describe('u8aEq', (): void => {
   it('works on aubarray values', (): void => {
     const a = new Uint8Array(16);
 
-    for (let i = 0, count = a.length; i < count; i++) {
+    for (let i = 0; i < a.length; i++) {
       a[i] = i;
     }
 

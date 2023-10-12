@@ -1,47 +1,16 @@
-// Copyright 2017-2023 @polkadot/keyring authors & contributors
+// Copyright 2017-2022 @polkadot/keyring authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeypairType } from '@polkadot/util-crypto/types';
-import type { KeyringOptions, KeyringPair } from './types.js';
+import type { KeyringOptions, KeyringPair } from './types';
 
-import { nobody } from './pair/nobody.js';
-import { createTestKeyring } from './testing.js';
+import { nobody } from './pair/nobody';
+import { createTestKeyring } from './testing';
 
 export interface TestKeyringMap {
-  nobody: KeyringPair;
-
   [index: string]: KeyringPair;
 }
 
-export interface TestKeyringMapSubstrate extends TestKeyringMap {
-  alice: KeyringPair;
-  bob: KeyringPair;
-  charlie: KeyringPair;
-  dave: KeyringPair;
-  eve: KeyringPair;
-  ferdie: KeyringPair;
-}
-
-export interface TestKeyringMapEthereum extends TestKeyringMap {
-  Alith: KeyringPair;
-  Baltathar: KeyringPair;
-  Charleth: KeyringPair;
-  Dorothy: KeyringPair;
-  Ethan: KeyringPair;
-  Faith: KeyringPair;
-}
-
-export type DetectMap<O extends KeyringOptions | undefined> = DetectPairType<O> extends 'ethereum'
-  ? TestKeyringMapEthereum
-  : TestKeyringMapSubstrate;
-
-export type DetectPairType<O extends KeyringOptions | undefined> = O extends KeyringOptions
-  ? O['type'] extends KeypairType
-    ? O['type']
-    : 'sr25519'
-  : 'sr25519';
-
-export function createTestPairs <O extends KeyringOptions, M = DetectMap<O>> (options?: O, isDerived = true): M {
+export function createTestPairs (options?: KeyringOptions, isDerived = true): TestKeyringMap {
   const keyring = createTestKeyring(options, isDerived);
   const pairs = keyring.getPairs();
   const map: TestKeyringMap = { nobody: nobody() };
@@ -50,5 +19,5 @@ export function createTestPairs <O extends KeyringOptions, M = DetectMap<O>> (op
     map[p.meta.name as string] = p;
   }
 
-  return map as M;
+  return map;
 }

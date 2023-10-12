@@ -1,13 +1,11 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { hexToU8a } from '@polkadot/util';
 import { waitReady } from '@polkadot/wasm-crypto';
 
-import { perfWasm } from '../test/index.js';
-import { sha256AsU8a } from './index.js';
+import { performanceWasm } from '../test/performance';
+import { sha256AsU8a } from '.';
 
 const TESTS = [
   {
@@ -37,19 +35,15 @@ describe('sha256AsU8a', (): void => {
     await waitReady();
   });
 
-  for (const onlyJs of [false, true]) {
-    describe(`onlyJs=${(onlyJs && 'true') || 'false'}`, (): void => {
-      for (const { input, output } of TESTS) {
-        it(`creates known sha-256 hash, ${output}`, (): void => {
-          expect(
-            sha256AsU8a(hexToU8a(input), onlyJs)
-          ).toEqual(hexToU8a(output));
-        });
-      }
+  describe.each([false, true])('onlyJs=%p', (onlyJs): void => {
+    it.each(TESTS)('creates known sha-256 hash', ({ input, output }): void => {
+      expect(
+        sha256AsU8a(hexToU8a(input), onlyJs)
+      ).toEqual(hexToU8a(output));
     });
-  }
+  });
 
-  perfWasm('sha256AsU8a', 128000, (input, onlyJs) =>
+  performanceWasm('sha256AsU8a', 128000, (input, onlyJs) =>
     sha256AsU8a(input, onlyJs)
   );
 });

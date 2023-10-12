@@ -1,9 +1,7 @@
-// Copyright 2017-2023 @polkadot/util-crypto authors & contributors
+// Copyright 2017-2022 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { ed25519PairFromSecret } from '../index.js';
+import { ed25519PairFromSecret } from '..';
 
 describe('ed25519PairFromSecret', (): void => {
   const secretKey = new Uint8Array([

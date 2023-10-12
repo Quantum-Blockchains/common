@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/x-fetch authors & contributors
+// Copyright 2017-2022 @polkadot/x-fetch authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { extractGlobal } from '@polkadot/x-global';
 
-export { packageInfo } from './packageInfo.js';
+export { packageInfo } from './packageInfo';
 
 // This is an ESM module, use the async import(...) syntax to pull it
 // in. Logically we would like it in nodeFetch(...) itself, however
@@ -30,4 +30,4 @@ async function nodeFetch (...args: Parameters<typeof fetch>): Promise<Response> 
   return modFn(...args);
 }
 
-export const fetch = /*#__PURE__*/ extractGlobal('fetch', nodeFetch);
+export const fetch = extractGlobal('fetch', nodeFetch);

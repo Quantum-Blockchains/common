@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/types authors & contributors
+// Copyright 2017-2022 @polkadot/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 type AnyFn = (...args: unknown[]) => unknown;
@@ -55,7 +55,7 @@ export function lazyMethod <T, K, S> (result: Record<string, T> | AnyFn, item: K
  * Creates lazy, on-demand getters for the specific values.
  */
 export function lazyMethods <T, K, S> (result: Record<string, T>, items: readonly K[], creator: (item: K, index: number, self: S) => T, getName?: (item: K, index: number) => string): Record<string, T> {
-  for (let i = 0, count = items.length; i < count; i++) {
+  for (let i = 0; i < items.length; i++) {
     lazyMethod(result, items[i], creator, getName, i);
   }
 

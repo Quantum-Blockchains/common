@@ -1,11 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { stringToU8a } from '../string/index.js';
-import { perf } from '../test/index.js';
-import { isAscii } from './index.js';
+import { stringToU8a } from '../string';
+import { perf } from '../test/performance';
+import { isAscii } from '.';
 
 describe('isAscii', (): void => {
   it('returns true for an ASCII string', (): void => {

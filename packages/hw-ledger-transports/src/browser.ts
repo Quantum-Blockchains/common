@@ -1,11 +1,23 @@
-// Copyright 2017-2023 @polkadot/hw-ledger authors & contributors
+// Copyright 2017-2022 @polkadot/hw-ledger authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import LedgerHid from '@ledgerhq/hw-transport-webhid';
-import LedgerUsb from '@ledgerhq/hw-transport-webusb';
+import type Transport from '@ledgerhq/hw-transport';
+import type { TransportDef } from './types';
 
-import { createDefs } from './util.js';
+import LedgerWebHid from '@ledgerhq/hw-transport-webhid';
+import LedgerWebUsb from '@ledgerhq/hw-transport-webusb';
 
-export { packageInfo } from './packageInfo.js';
+export { packageInfo } from './packageInfo';
 
-export const transports = /*#__PURE__*/ createDefs(['webusb', LedgerUsb], ['hid', LedgerHid]);
+export const transports: TransportDef[] = [
+  {
+    create: (): Promise<Transport> =>
+      LedgerWebUsb.create(),
+    type: 'webusb'
+  },
+  {
+    create: (): Promise<Transport> =>
+      LedgerWebHid.create(),
+    type: 'hid'
+  }
+];

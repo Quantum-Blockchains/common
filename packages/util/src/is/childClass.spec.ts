@@ -1,10 +1,8 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
-import { BN } from '../bn/index.js';
-import { isChildClass } from './index.js';
+import { BN } from '../bn';
+import { isChildClass } from '.';
 
 describe('isChildClass', (): void => {
   it('returns true when a Child value', (): void => {
@@ -28,9 +26,10 @@ describe('isChildClass', (): void => {
   it('does TS magic, determining type', (): void => {
     const T = (class extends BN {}) as unknown;
 
-    expect(
-      isChildClass(BN, T) &&
-      new T(12345).toNumber()
-    ).toEqual(12345);
+    if (isChildClass(BN, T)) {
+      expect(new T(12345).toNumber()).toEqual(12345);
+    } else {
+      throw new Error('Not a child class');
+    }
   });
 });

@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/util authors & contributors
+// Copyright 2017-2022 @polkadot/util authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { U8aLike } from '../types.js';
+import type { U8aLike } from '../types';
 
-import { u8aToU8a } from './toU8a.js';
+import { u8aToU8a } from './toU8a';
 
 /**
  * @name u8aConcat
@@ -23,10 +23,9 @@ import { u8aToU8a } from './toU8a.js';
  * ```
  */
 export function u8aConcat (...list: readonly U8aLike[]): Uint8Array {
-  const count = list.length;
-  const u8as = new Array<Uint8Array>(count);
+  const u8as = new Array<Uint8Array>(list.length);
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < list.length; i++) {
     u8as[i] = u8aToU8a(list[i]);
   }
 
