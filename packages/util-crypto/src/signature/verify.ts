@@ -37,7 +37,7 @@ const VERIFIERS: Verifier[] = [
   ...VERIFIERS_ECDSA
 ];
 
-const CRYPTO_TYPES: ('ed25519' | 'sr25519' | 'ecdsa' | 'dilithium2' )[] = ['ed25519', 'sr25519', 'ecdsa', 'dilithium2'];
+const CRYPTO_TYPES: ('ed25519' | 'sr25519' | 'ecdsa' | 'dilithium2')[] = ['ed25519', 'sr25519', 'ecdsa', 'dilithium2'];
 
 function verifyDetect (result: VerifyResult, { message, publicKey, signature }: VerifyInput, verifiers = VERIFIERS): VerifyResult {
   result.isValid = verifiers.some(([crypto, verify]): boolean => {

@@ -1,8 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/** The params that control scrypt generation */
-export interface ScryptParams {
+export interface Params {
   N: number;
   p: number;
   r: number;

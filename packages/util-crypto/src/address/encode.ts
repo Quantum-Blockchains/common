@@ -17,7 +17,7 @@ export function encodeAddress (key: string | Uint8Array, ss58Format: Prefix = de
   if (key.length === 1312) {
     key = key.slice(0, 32);
   }
-
+  
   const u8a = decodeAddress(key);
 
   if ((ss58Format < 0) || (ss58Format > 16383) || [46, 47].includes(ss58Format)) {

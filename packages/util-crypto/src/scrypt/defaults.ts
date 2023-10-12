@@ -1,9 +1,7 @@
 // Copyright 2017-2023 @polkadot/util-crypto authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ScryptParams } from './types.js';
-
-export const DEFAULT_PARAMS: ScryptParams = {
+export const DEFAULT_PARAMS = {
   N: 1 << 15,
   p: 1,
   r: 8
