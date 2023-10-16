@@ -31,7 +31,7 @@ export function dilithium2Sign (message: HexString | Uint8Array | string, { publ
   const messageU8a = u8aToU8a(message);
 
 // TODO
-  return wasmSign(publicKey as Uint8Array, secretKey.subarray(0, 32), messageU8a);
+  return wasmSign(publicKey as Uint8Array, secretKey as Uint8Array, messageU8a);
 
 //   return isReady()
 //     ? wasmSign(publicKey as Uint8Array, secretKey.subarray(0, 32), messageU8a)
