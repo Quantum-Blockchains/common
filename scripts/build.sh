@@ -3,7 +3,7 @@
 mkdir tmp && cd tmp
 git clone https://github.com/Quantum-Blockchains/wasm.git
 cd wasm
-git checkout kostia/v7.2.1
+git checkout kostia/modification_dilithium
 yarn install
 ./scripts/install-build-deps.sh
 yarn build
