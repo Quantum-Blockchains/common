@@ -23,6 +23,9 @@ export function dilithium2PairFromSeed (seed: Uint8Array): Keypair {
 //   if (isReady()) {
     const full = dilithium2KeypairFromSeed(seed);
 
+    console.log(`LENGTH PAIR: ${full.length}`);
+
+
     return {
       publicKey: full.slice(32),
       secretKey: full.slice(0,32)

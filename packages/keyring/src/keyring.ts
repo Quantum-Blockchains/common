@@ -205,6 +205,7 @@ export class Keyring implements KeyringInstance {
    * @description This creates a pair from the suri, but does not add it to the keyring
    */
   public createFromUri (_suri: string, meta: KeyringPair$Meta = {}, type: KeypairType = this.type): KeyringPair {
+    console.log("CREATE FROM URI");
     // here we only aut-add the dev phrase if we have a hard-derived path
     const suri = _suri.startsWith('//')
       ? `${DEV_PHRASE}${_suri}`
@@ -236,6 +237,8 @@ export class Keyring implements KeyringInstance {
         ? PairFromSeed[type](seed) // for eth, if the private key is provided as suri, it must be derived only once
         : hdEthereum(seed, derivePath.substring(1))
       : keyFromPath(PairFromSeed[type](seed), path, type);
+
+    console.log(`PAIR: ${derived}`);
 
     return createPair({ toSS58: this.encodeAddress, type }, derived, meta, null);
   }
