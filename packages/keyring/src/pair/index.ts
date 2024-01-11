@@ -97,7 +97,7 @@ export function createPair ({ toSS58, type }: Setup, { publicKey, secretKey }: P
     if (decoded.secretKey.length === 64) {
       publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;
-    } else if (decoded.secretKey.length === 2528) {
+    } else if (decoded.secretKey.length === 32) {
       publicKey = decoded.publicKey;
       secretKey = decoded.secretKey;
     } else {
