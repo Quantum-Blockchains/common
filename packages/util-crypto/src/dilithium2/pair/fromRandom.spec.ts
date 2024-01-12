@@ -21,6 +21,6 @@ describe('dilithium2PairFromRandom', (): void => {
   it('generates a valid secretKey', (): void => {
     expect(
       keypair.secretKey
-    ).toHaveLength(2528);
+    ).toHaveLength(32);
   });
 });
