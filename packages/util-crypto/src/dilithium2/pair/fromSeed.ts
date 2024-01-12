@@ -20,14 +20,11 @@ import { dilithium2KeypairFromSeed/*, isReady*/} from '@polkadot/wasm-crypto';
  * ```
  */
 export function dilithium2PairFromSeed (seed: Uint8Array): Keypair {
-//   if (isReady()) {
+  
     const full = dilithium2KeypairFromSeed(seed);
 
     return {
-      publicKey: full.slice(2528),
-      secretKey: full.slice(0,2528)
+      publicKey: full.slice(32),
+      secretKey: full.slice(0,32)
     };
-//   }
-  // TODO: return error
-//   return nacl.sign.keyPair.fromSeed(seed);
 }
