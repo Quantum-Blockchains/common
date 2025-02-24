@@ -8,6 +8,7 @@ import { keyHdkdEcdsa } from './hdkdEcdsa.js';
 import { keyHdkdEd25519 } from './hdkdEd25519.js';
 import { keyHdkdSr25519 } from './hdkdSr25519.js';
 import { keyHdkdDilithium2 } from './hdkdDilithium2.js';
+import { keyHdkdMldsa44 } from './hdkdMldsa44.js';
 
 const generators = {
   ecdsa: keyHdkdEcdsa,
@@ -15,7 +16,8 @@ const generators = {
   // FIXME This is Substrate-compatible, not Ethereum-compatible
   ethereum: keyHdkdEcdsa,
   sr25519: keyHdkdSr25519,
-  dilithium2: keyHdkdDilithium2
+  dilithium2: keyHdkdDilithium2,
+  mldsa44: keyHdkdMldsa44
 };
 
 export function keyFromPath (pair: Keypair, path: DeriveJunction[], type: KeypairType): Keypair {

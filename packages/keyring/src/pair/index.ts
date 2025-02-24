@@ -7,7 +7,7 @@ import type { KeyringPair, KeyringPair$Json, KeyringPair$Meta, SignOptions } fro
 import type { PairInfo } from './types.js';
 
 import { objectSpread, u8aConcat, u8aEmpty, u8aEq, u8aToHex, u8aToU8a } from '@polkadot/util';
-import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, dilithium2PairFromSeed as dilithium2FromSeed, dilithium2Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
+import { blake2AsU8a, ed25519PairFromSeed as ed25519FromSeed, ed25519Sign, dilithium2PairFromSeed as dilithium2FromSeed, dilithium2Sign, mldsa44PairFromSeed as mldsa44FromSeed, mldsa44Sign, ethereumEncode, keccakAsU8a, keyExtractPath, keyFromPath, secp256k1Compress, secp256k1Expand, secp256k1PairFromSeed as secp256k1FromSeed, secp256k1Sign, signatureVerify, sr25519PairFromSeed as sr25519FromSeed, sr25519Sign, sr25519VrfSign, sr25519VrfVerify } from '@polkadot/util-crypto';
 
 import { decodePair } from './decode.js';
 import { encodePair } from './encode.js';
@@ -25,7 +25,8 @@ const TYPE_FROM_SEED = {
   ed25519: ed25519FromSeed,
   ethereum: secp256k1FromSeed,
   sr25519: sr25519FromSeed,
-  dilithium2: dilithium2FromSeed
+  dilithium2: dilithium2FromSeed,
+  mldsa44: mldsa44FromSeed
 };
 
 const TYPE_PREFIX = {
@@ -33,7 +34,8 @@ const TYPE_PREFIX = {
   ed25519: new Uint8Array([0]),
   ethereum: new Uint8Array([2]),
   sr25519: new Uint8Array([1]),
-  dilithium2: new Uint8Array([3])
+  dilithium2: new Uint8Array([3]),
+  mldsa44: new Uint8Array([4])
 };
 
 const TYPE_SIGNATURE = {
@@ -41,7 +43,8 @@ const TYPE_SIGNATURE = {
   ed25519: ed25519Sign,
   ethereum: (m: Uint8Array, p: Partial<Keypair>) => secp256k1Sign(m, p, 'keccak'),
   sr25519: sr25519Sign,
-  dilithium2: dilithium2Sign
+  dilithium2: dilithium2Sign,
+  mldsa44: mldsa44Sign
 };
 
 const TYPE_ADDRESS = {
@@ -49,7 +52,8 @@ const TYPE_ADDRESS = {
   ed25519: (p: Uint8Array) => p,
   ethereum: (p: Uint8Array) => p.length === 20 ? p : keccakAsU8a(secp256k1Expand(p)),
   sr25519: (p: Uint8Array) => p,
-  dilithium2: (p: Uint8Array) => p
+  dilithium2: (p: Uint8Array) => p,
+  mldsa44: (p: Uint8Array) => p
 };
 
 function isLocked (secretKey?: Uint8Array): secretKey is undefined {
