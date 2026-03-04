@@ -25,7 +25,7 @@ jobs:
       - name: Build packages
         run: |
           yarn install --immutable
-          yarn build:common
+          yarn build
 
       - name: Pack workspace tarballs
         run: |
